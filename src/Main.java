@@ -1,5 +1,5 @@
-import robot.LineFollower2;
-import robot.TestEncoder;
+import robot.LineFollower;
+import robot.UltrasonicDetection;
 
 /**
  * @author luca
@@ -7,8 +7,13 @@ import robot.TestEncoder;
  */
 public class Main {
     public static void main(String[] args){
-        LineFollower2.start();
+        (new Thread(new UltrasonicDetection())).start();
+
+        LineFollower.start();
+
         //TestEncoder.start();
+
+
 
     }
 }

@@ -27,7 +27,7 @@ public final class LineFollower {
     }
 
 
-    public static void start(){
+    public static void start() {
 
 
         Port port = LocalEV3.get().getPort("S1");
@@ -68,7 +68,7 @@ public final class LineFollower {
             rMotor.setSpeed(rval);
             lMotor.forward();
             rMotor.forward();
-
+            //Thread.sleep(50);
             //display(sample[0], lval, rval);
         }
     }
