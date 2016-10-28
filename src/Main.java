@@ -1,3 +1,4 @@
+import robot.FetchSamples;
 import robot.LineFollower;
 import robot.UltrasonicDetection;
 
@@ -7,11 +8,11 @@ import robot.UltrasonicDetection;
  */
 public class Main {
     public static void main(String[] args){
-        (new Thread(new UltrasonicDetection())).start();
+        /*(new Thread(new UltrasonicDetection())).start();
 
-        LineFollower.start();
+        LineFollower.start();*/
 
-        //TestEncoder.start();
+        FetchSamples.start();
 
 
 
