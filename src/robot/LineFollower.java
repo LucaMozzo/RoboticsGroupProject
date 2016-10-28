@@ -41,26 +41,21 @@ public final class LineFollower {
 
         int lval;
         int rval;
-        final int dval = 200;
-        double k;
-        double s;
+        final int dval = 200; // base motor value
+        double k = 5; //constant of proportionality
+        double e; // error term and sensor recorded value (dual use
 
         while(true){
             colourSampleProvider.fetchSample(sample, 0);
             lval=dval;
             rval=dval;
-            s=1;
 
-            k = sample[0];
-            if(k<0.12 || k>0.2){
-                k = k-0.15;
-                if(k<0){
-                    lval = (int)(dval*(k*1.7*(-10)+1));
-                    rval = (int)(dval*(s-k));
-                }
-                else{
-                    rval = (int)(dval*(k*(10)+1));
-                    lval = (int)(dval*(s-k));
+            e = sample[0];
+            if(e<0.30 || e>0.42){ // filtering out  noise, so that robot can go straight
+                e = e-0.35;
+                if(e<0) { // two lines below are the P part of the PID controller
+                    lval = (int) (dval - (k * 1.7 * e)); //sensor reading are no symetrical, hencea constant 1.7 adjust
+                    rval = (int) (dval + (k*e));
                 }
             }
 
@@ -68,54 +63,7 @@ public final class LineFollower {
             rMotor.setSpeed(rval);
             lMotor.forward();
             rMotor.forward();
-            //Thread.sleep(50);
-            //display(sample[0], lval, rval);
+
         }
     }
 }
-
-
-/*
-
-        Port port = LocalEV3.get().getPort("S1");
-        RegulatedMotor rMotor = new EV3LargeRegulatedMotor(MotorPort.A);
-        RegulatedMotor lMotor = new EV3LargeRegulatedMotor(MotorPort.B);
-        SensorModes colourSensor = new EV3ColorSensor(port);
-        SampleProvider colourSampleProvider = colourSensor.getMode("Red");
-
-
-        float[] sample = new float[colourSampleProvider.sampleSize()];
-
-        int lval;
-        int rval;
-
-        while(true){
-            colourSampleProvider.fetchSample(sample, 0);
-            lval=1;
-            rval=1;
-
-            rMotor.setSpeed(200);
-            lMotor.setSpeed(200);
-
-            float k = 1;
-
-            if(sample[0]>0.06){
-                k = sample[0];
-                if(k<0.15){
-                    lval=Math.round(200*k);
-                    lMotor.setSpeed(lval);
-                }
-                else{
-                    rval = Math.round(200*k);
-                    rMotor.setSpeed(rval);
-                }
-            }
-
-            //lMotor.forward();
-            //rMotor.forward();
-
-            display(sample[0], lval, rval);
-            Delay.msDelay(1000);
-        }
-    }
- */
