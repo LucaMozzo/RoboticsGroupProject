@@ -34,7 +34,7 @@ public final class LineFollower {
         int lval;
         int rval;
         final int dval = 200; // base motor value
-        double k = 100; //constant of proportionality
+        double k = 500; //constant of proportionality
         double e; // error term and sensor recorded value (dual use
 
         while(true){
@@ -43,20 +43,20 @@ public final class LineFollower {
             lval=dval;
             rval=dval;
             e = sample[0];
-            if(e<0.15 || e>0.25){ // filtering out  noise, so that robot can go straight
-                e = e-0.2;
-                lval = (int) (dval - (k*1.7*e)); //sensor reading are no symetrical, hence constant 1.7 adjust
-                rval = (int) (dval + (k*e));
+            if(e<0.3 || e>0.45){ // filtering out  noise, so that robot can go straight
+                e = e-0.40;
+                lval = (int) (dval - (k*e)); //sensor reading are no symetrical, hence constant 1.7 adjust
+                rval = (int) (dval + (k*2*e));
 
-                String[] strings = {"lval: ", "rval: ", "sensor: "};
+                /*String[] strings = {"lval: ", "rval: ", "sensor: "};
                 float[] floats = {lval, rval, sample[0]};
-                Utility.display(strings, floats);
+                Utility.display(strings, floats);*/
             }
             lMotor.setSpeed(lval);
             rMotor.setSpeed(rval);
             lMotor.forward();
             rMotor.forward();
-            Delay.msDelay(500);
+            //Delay.msDelay(500);
 
         }
     }
