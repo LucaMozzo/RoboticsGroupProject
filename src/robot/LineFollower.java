@@ -11,6 +11,7 @@ import lejos.hardware.sensor.SensorModes;
 import lejos.robotics.RegulatedMotor;
 import lejos.robotics.SampleProvider;
 import lejos.utility.Delay;
+import utils.Utility;
 
 /**
  * @author luca
@@ -33,27 +34,29 @@ public final class LineFollower {
         int lval;
         int rval;
         final int dval = 200; // base motor value
-        double k = 5; //constant of proportionality
+        double k = 100; //constant of proportionality
         double e; // error term and sensor recorded value (dual use
 
         while(true){
             colourSampleProvider.fetchSample(sample, 0);
+
             lval=dval;
             rval=dval;
-
             e = sample[0];
-            if(e<0.30 || e>0.42){ // filtering out  noise, so that robot can go straight
-                e = e-0.35;
-                if(e<0) { // two lines below are the P part of the PID controller
-                    lval = (int) (dval - (k * 1.7 * e)); //sensor reading are no symetrical, hencea constant 1.7 adjust
-                    rval = (int) (dval + (k*e));
-                }
-            }
+            if(e<0.15 || e>0.25){ // filtering out  noise, so that robot can go straight
+                e = e-0.2;
+                lval = (int) (dval - (k*1.7*e)); //sensor reading are no symetrical, hence constant 1.7 adjust
+                rval = (int) (dval + (k*e));
 
+                String[] strings = {"lval: ", "rval: ", "sensor: "};
+                float[] floats = {lval, rval, sample[0]};
+                Utility.display(strings, floats);
+            }
             lMotor.setSpeed(lval);
             rMotor.setSpeed(rval);
             lMotor.forward();
             rMotor.forward();
+            Delay.msDelay(500);
 
         }
     }

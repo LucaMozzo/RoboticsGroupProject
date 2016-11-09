@@ -18,7 +18,7 @@ public final class TestLight {
 
     public static void start(){
         SensorModes lSensor = new EV3ColorSensor(SensorPort.S1);
-        SampleProvider colourSampleProvider = lSensor.getMode("Red");
+        SampleProvider colourSampleProvider = lSensor.getMode("RED");
 
         float[] sample = new float[colourSampleProvider.sampleSize()];
 
