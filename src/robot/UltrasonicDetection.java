@@ -25,19 +25,14 @@ public class UltrasonicDetection implements Runnable {
 
         float[] sample = new float[distanceSampleProvider.sampleSize()];
 
-        while(true){
-            motor.rotate(45);
-            distanceSampleProvider.fetchSample(sample,0);
-            motor.rotate(45);
-            //take a sample
-            motor.rotate(45);
-            //take a sample
-            motor.rotate(45);
-            //take a sample
-            Delay.msDelay(100);
-            motor.rotate(-180);
+        for(int i = 0; i < 45; ++i) { 
+            motor.rotate(4);
+            distanceSampleProvider.fetchSample(sample, 0);
+            Utility.displayString(String.valueOf(sample[0]));
+            Delay.msDelay(10);
+        } 
+        motor.rotate(-180);
         }
-    }
 
 
 }
