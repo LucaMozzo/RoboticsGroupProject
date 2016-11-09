@@ -1,3 +1,4 @@
+import robot.LineFollower;
 import robot.TestLight;
 
 /**
@@ -8,7 +9,7 @@ public class Main {
     public static void main(String[] args){
         //(new Thread(new UltrasonicDetection())).start(); ultrasonic
 
-        TestLight.start();
+        LineFollower.start();
 
         //TestEncoder.start();
 

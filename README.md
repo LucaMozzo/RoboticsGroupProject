@@ -19,10 +19,10 @@ Download the [tool](http://www.rapidpm.org/2013/12/27/developing-lejos-programs-
 <table style="width:100%">
 <tr>
 <th>Percent off</th>
-<th>Red Value (2 spacers)</th>
+<th><strike>Red Value (2 spacers)</strike></th>
 <th>Red Value (1 spacer)</th>
-<th>RGB Value (2 spacers)</th>
-<th>RGB Value (1 spacer)</th>
+<th><strike>RGB Value (2 spacers)</strike></th>
+<th><strike>RGB Value (1 spacer)</strike></th>
 </tr>
 <tr><td>0% (BLACK)</td><td>&lt0.05</td><td>&lt0.08-0.1</td><td>0.02</td><td>0.03</td></tr>
 <tr><td>25%</td><td>0.1</td><td>0.09-0.13</td><td>0.04</td><td>0.07</td></tr>
