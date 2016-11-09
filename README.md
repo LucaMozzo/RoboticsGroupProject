@@ -18,12 +18,13 @@ Download the [tool](http://www.rapidpm.org/2013/12/27/developing-lejos-programs-
 <h3>Colour values</h3>
 <table style="width:100%">
 <tr>
-<th>Percent out</th>
-<th>Value</th>
+<th>Percent off</th>
+<th>Value (2 spacers)</th>
+<th>Value (1 spacer)</th>
 </tr>
-<tr><td>0% (BLACK)</td><td>&lt0.06</td></tr>
-<tr><td>25%</td><td>0.08-0.1</td></tr>
-<tr><td>50%</td><td>0.18-0.2</td></tr>
-<tr><td>75%</td><td>0.35-0.43</td></tr>
-<tr><td>100% (WHITE)</td><td>&gt0.5</td></tr>
+<tr><td>0% (BLACK)</td><td>&lt0.05</td><td>&lt0.08-0.1</td></tr>
+<tr><td>25%</td><td>0.1</td><td>0.09-0.13</td></tr>
+<tr><td>50%</td><td>0.35</td><td>0.38-0.4</td></tr>
+<tr><td>75%</td><td>0.45</td><td>0.65-0.8</td></tr>
+<tr><td>100% (WHITE)</td><td>&gt0.49</td><td>&gt0.8</td></tr>
 </table> 
