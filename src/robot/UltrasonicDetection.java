@@ -11,6 +11,7 @@ import lejos.hardware.sensor.SensorModes;
 import lejos.robotics.RegulatedMotor;
 import lejos.robotics.SampleProvider;
 import lejos.utility.Delay;
+import utils.Utility;
 
 /**
  * Created by Artur on 26-Oct-16.
@@ -25,14 +26,14 @@ public class UltrasonicDetection implements Runnable {
 
         float[] sample = new float[distanceSampleProvider.sampleSize()];
 
-        for(int i = 0; i < 45; ++i) { 
+        for(int i = 0; i < 45; ++i) {
             motor.rotate(4);
             distanceSampleProvider.fetchSample(sample, 0);
-            Utility.displayString(String.valueOf(sample[0]));
+            Utility.display(sample[0]);
             Delay.msDelay(10);
-        } 
-        motor.rotate(-180);
         }
+        motor.rotate(-180);
+    }
 
 
 }

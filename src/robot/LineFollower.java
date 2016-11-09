@@ -18,23 +18,14 @@ import lejos.utility.Delay;
  */
 public final class LineFollower {
 
-    public static void display(float sensor, int lval, int rval){
-        LCD.clearDisplay();
-        LCD.drawString("sensor value  " + String.valueOf(sensor), 0, 0);
-        LCD.drawString("left value" + String.valueOf(lval), 0, 2);
-        LCD.drawString("right value" +String.valueOf(rval), 0, 3);
-
-    }
-
-
     public static void start() {
 
 
         Port port = LocalEV3.get().getPort("S1");
         RegulatedMotor rMotor = new EV3LargeRegulatedMotor(MotorPort.A);
         RegulatedMotor lMotor = new EV3LargeRegulatedMotor(MotorPort.B);
-        SensorModes colourSensor = new EV3ColorSensor(port);
-        SampleProvider colourSampleProvider = colourSensor.getMode("Red");
+        SensorModes lSensor = new EV3ColorSensor(port);
+        SampleProvider colourSampleProvider = lSensor.getMode("Red");
 
 
         float[] sample = new float[colourSampleProvider.sampleSize()];
