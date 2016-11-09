@@ -19,12 +19,14 @@ Download the [tool](http://www.rapidpm.org/2013/12/27/developing-lejos-programs-
 <table style="width:100%">
 <tr>
 <th>Percent off</th>
-<th>Value (2 spacers)</th>
-<th>Value (1 spacer)</th>
+<th>Red Value (2 spacers)</th>
+<th>Red Value (1 spacer)</th>
+<th>RGB Value (2 spacers)</th>
+<th>RGB Value (1 spacer)</th>
 </tr>
-<tr><td>0% (BLACK)</td><td>&lt0.05</td><td>&lt0.08-0.1</td></tr>
-<tr><td>25%</td><td>0.1</td><td>0.09-0.13</td></tr>
-<tr><td>50%</td><td>0.35</td><td>0.38-0.4</td></tr>
-<tr><td>75%</td><td>0.45</td><td>0.65-0.8</td></tr>
-<tr><td>100% (WHITE)</td><td>&gt0.49</td><td>&gt0.8</td></tr>
+<tr><td>0% (BLACK)</td><td>&lt0.05</td><td>&lt0.08-0.1</td><td>0.02</td><td>0.03</td></tr>
+<tr><td>25%</td><td>0.1</td><td>0.09-0.13</td><td>0.04</td><td>0.07</td></tr>
+<tr><td>50%</td><td>0.35</td><td>0.38-0.4</td><td>0.05-0.06</td><td>0.17</td></tr>
+<tr><td>75%</td><td>0.45</td><td>0.65-0.8</td><td>0.18</td><td>0.27</td></tr>
+<tr><td>100% (WHITE)</td><td>&gt0.49</td><td>&gt0.8</td><td>&qt0.24</td><td>&gt0.34</td></tr>
 </table> 
