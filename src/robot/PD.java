@@ -2,9 +2,7 @@ package robot;
 
 import lejos.hardware.Button;
 import lejos.hardware.ev3.LocalEV3;
-import lejos.hardware.lcd.LCD;
 import lejos.hardware.motor.EV3LargeRegulatedMotor;
-import lejos.hardware.motor.Motor;
 import lejos.hardware.port.MotorPort;
 import lejos.hardware.port.Port;
 import lejos.hardware.sensor.EV3ColorSensor;
@@ -12,17 +10,13 @@ import lejos.hardware.sensor.SensorModes;
 import lejos.robotics.RegulatedMotor;
 import lejos.robotics.SampleProvider;
 import lejos.utility.Delay;
-import utils.Utility;
 
 /**
- * @author luca
- * Class provides methods for following the line
+ * Created by lucam on 11/11/2016.
  */
-public final class PTuner {
+public class PD {
 
     public static void start() {
-
-
         Port port = LocalEV3.get().getPort("S1");
         RegulatedMotor rMotor = new EV3LargeRegulatedMotor(MotorPort.A);
         RegulatedMotor lMotor = new EV3LargeRegulatedMotor(MotorPort.B);
@@ -36,11 +30,13 @@ public final class PTuner {
         int rval;
         int dval = 200; // base motor value
         float k = 320; //constant of proportionality
-        double e; // error term and sensor recorded value (dual use
+        float e; // error term and sensor recorded value (dual use
 
         float kSym = 1.3f;
         int index = 0; //menu index
 
+        int Kd = 10000;
+        float lastError = 0;
 
         while (true) {
             while (Button.getButtons() == 0) {
@@ -51,12 +47,11 @@ public final class PTuner {
                 e = sample[0];
                 if (e < 0.3 || e > 0.45) { // filtering out  noise, so that robot can go straight
                     e -= 0.375;
-                    lval = (int) (dval - (k * kSym * e)); //sensor reading are no symetrical, hence constant 1.7 adjust
-                    rval = (int) (dval + (k * e));
+                    float derivative = e - lastError;
+                    lval = (int) (dval - (k * kSym * e) + Kd * derivative); //sensor reading are no symetrical, hence constant 1.7 adjust
+                    rval = (int) (dval + (k * e) + Kd * derivative);
 
-                /*String[] strings = {"lval: ", "rval: ", "sensor: "};
-                float[] floats = {lval, rval, sample[0]};
-                Utility.display(strings, floats);*/
+                    lastError = e;
                 }
                 lMotor.setSpeed(lval);
                 rMotor.setSpeed(rval);
@@ -65,7 +60,7 @@ public final class PTuner {
                 //Delay.msDelay(500);
             }
 
-            float[] vals = {kSym, k, 0, 1, dval};
+            float[] vals = {kSym, k, Kd, 2, dval};
 
             if (Button.getButtons() == Button.ID_UP)
                 ++index;
@@ -78,20 +73,24 @@ public final class PTuner {
                     kSym += 0.1;
                 else if(index == 1)
                     k += 10;
+                else if(index == 2)
+                    Kd += 100;
                 else if(index == 4)
                     dval += 20;
-                else if(index == 3) {
-                    PD.start();
-                    return;
-                }
             }
             else if (Button.getButtons() == Button.ID_LEFT){
                 if(index == 0)
                     kSym -= 0.1;
                 else if(index == 1)
                     k -= 10;
+                else if(index == 2)
+                    Kd -= 100;
                 else if(index == 4)
                     dval -= 20;
+                else if(index == 3) {
+                    PTuner.start();
+                    return;
+                }
             }
             else if(Button.getButtons() == Button.ID_ENTER) { //PAUSE
                 Delay.msDelay(500);
