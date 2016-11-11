@@ -35,7 +35,7 @@ public final class LineFollower {
         int lval;
         int rval;
         final int dval = 200; // base motor value
-        float k = 500; //constant of proportionality
+        float k = 320; //constant of proportionality
         double e; // error term and sensor recorded value (dual use
 
         float kprop = 1;
@@ -49,7 +49,7 @@ public final class LineFollower {
                 rval = dval;
                 e = sample[0];
                 if (e < 0.3 || e > 0.45) { // filtering out  noise, so that robot can go straight
-                    e = e - 0.40;
+                    e -= 0.375;
                     lval = (int) (dval - (k * e)); //sensor reading are no symetrical, hence constant 1.7 adjust
                     rval = (int) (dval + (k * kprop * e));
 
