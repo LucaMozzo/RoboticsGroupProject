@@ -37,63 +37,25 @@ public final class LineFollower {
         final int dval = 200; // base motor value
         float k = 320; //constant of proportionality
         double e; // error term and sensor recorded value (dual use
-
-        float kprop = 1;
+        float kSym = 1.3f;
 
 
         while (true) {
-            while (Button.getButtons() == 0) {
-                colourSampleProvider.fetchSample(sample, 0);
+            colourSampleProvider.fetchSample(sample, 0);
 
-                lval = dval;
-                rval = dval;
-                e = sample[0];
-                if (e < 0.3 || e > 0.45) { // filtering out  noise, so that robot can go straight
-                    e -= 0.375;
-                    lval = (int) (dval - (k * e)); //sensor reading are no symetrical, hence constant 1.7 adjust
-                    rval = (int) (dval + (k * kprop * e));
-
-                /*String[] strings = {"lval: ", "rval: ", "sensor: "};
-                float[] floats = {lval, rval, sample[0]};
-                Utility.display(strings, floats);*/
-                }
-                lMotor.setSpeed(lval);
-                rMotor.setSpeed(rval);
-                lMotor.forward();
-                rMotor.forward();
-                //Delay.msDelay(500);
-
-
+            lval = dval;
+            rval = dval;
+            e = sample[0];
+            if (e < 0.3 || e > 0.45) { // filtering out  noise, so that robot can go straight
+                e -= 0.375;
+                lval = (int) (dval - (k * e)); //sensor reading are no symetrical, hence constant 1.7 adjust
+                rval = (int) (dval + (k * kSym * e));
             }
-
-            if (Button.getButtons() == Button.ID_UP)
-                kprop += 0.1;
-            else if (Button.getButtons() == Button.ID_DOWN) {
-                    kprop -= 0.1;
-            }
-            else if (Button.getButtons() == Button.ID_LEFT)
-                    k += 10;
-            else if (Button.getButtons() == Button.ID_RIGHT)
-                    k -= 10;
-            else if(Button.getButtons() == Button.ID_ENTER) {
-                Delay.msDelay(500);
-                lMotor.setSpeed(0);
-                rMotor.setSpeed(0);
-                lMotor.forward();
-                rMotor.forward();
-                while (Button.getButtons() != Button.ID_ENTER){
-
-                    Delay.msDelay(200);
-                }
-            }
-
-
-
-            String[] str = {"Kprop: ", "k: "};
-            float[] ints = {kprop, k};
-            utils.Utility.display(str, ints);
-
-            Delay.msDelay(100);
+            lMotor.setSpeed(lval);
+            rMotor.setSpeed(rval);
+            lMotor.forward();
+            rMotor.forward();
+            //Delay.msDelay(500);
         }
     }
 }
