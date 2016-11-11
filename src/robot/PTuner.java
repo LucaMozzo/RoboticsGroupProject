@@ -38,7 +38,7 @@ public final class PTuner {
         float k = 320; //constant of proportionality
         double e; // error term and sensor recorded value (dual use
 
-        float kprop = 1;
+        float kSym = 1.3f;
 
 
         while (true) {
@@ -51,7 +51,7 @@ public final class PTuner {
                 if (e < 0.3 || e > 0.45) { // filtering out  noise, so that robot can go straight
                     e -= 0.375;
                     lval = (int) (dval - (k * e)); //sensor reading are no symetrical, hence constant 1.7 adjust
-                    rval = (int) (dval + (k * kprop * e));
+                    rval = (int) (dval + (k * kSym * e));
 
                 /*String[] strings = {"lval: ", "rval: ", "sensor: "};
                 float[] floats = {lval, rval, sample[0]};
@@ -65,9 +65,9 @@ public final class PTuner {
             }
 
             if (Button.getButtons() == Button.ID_UP)
-                kprop += 0.1;
+                kSym += 0.1;
             else if (Button.getButtons() == Button.ID_DOWN) {
-                kprop -= 0.1;
+                kSym -= 0.1;
             }
             else if (Button.getButtons() == Button.ID_RIGHT)
                 k += 10;
@@ -88,7 +88,7 @@ public final class PTuner {
 
 
             String[] str = {"Kprop: ", "k: "};
-            float[] ints = {kprop, k};
+            float[] ints = {kSym, k};
             utils.Utility.display(str, ints);
 
             Delay.msDelay(100);
