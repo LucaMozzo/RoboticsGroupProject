@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="05a5b637-bfca-4184-9784-325c83e838dc" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RoboticsGroupProject.jar" afterPath="$PROJECT_DIR$/RoboticsGroupProject.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/RoboticsGroupProject_jar/RoboticsGroupProject.jar" afterPath="$PROJECT_DIR$/out/artifacts/RoboticsGroupProject_jar/RoboticsGroupProject.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/RoboticsGroupProject/Main.class" afterPath="$PROJECT_DIR$/out/production/RoboticsGroupProject/Main.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/RoboticsGroupProject/robot/LineFollower.class" afterPath="$PROJECT_DIR$/out/production/RoboticsGroupProject/robot/LineFollower.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/robot/LineFollower.java" afterPath="$PROJECT_DIR$/src/robot/LineFollower.java" />
     </list>
     <ignored path="RoboticsGroupProject.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -827,7 +824,7 @@
       <workItem from="1477647341302" duration="2888000" />
       <workItem from="1478686509483" duration="65000" />
       <workItem from="1478686704962" duration="6995000" />
-      <workItem from="1478863783001" duration="5467000" />
+      <workItem from="1478863783001" duration="5964000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1475661148512</created>
@@ -913,11 +910,17 @@
       <option name="project" value="LOCAL" />
       <updated>1478693864365</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="added k test">
+      <created>1478869482575</created>
+      <option name="number" value="00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1478869482575</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="49483000" />
+    <option name="totallyTimeSpent" value="49980000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1008,7 +1011,8 @@
     <MESSAGE value="Test light added, got rid of useless files" />
     <MESSAGE value="Data Collection finished: red, one spacer selected" />
     <MESSAGE value="P controller still in the works" />
-    <option name="LAST_COMMIT_MESSAGE" value="P controller still in the works" />
+    <MESSAGE value="added k test" />
+    <option name="LAST_COMMIT_MESSAGE" value="added k test" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
