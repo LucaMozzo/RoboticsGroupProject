@@ -46,7 +46,7 @@ public class PD {
                 rval = dval;
                 e = sample[0];
                 if (e < 0.3 || e > 0.45) { // filtering out  noise, so that robot can go straight
-                    e -= 0.375;
+                    e -= 0.42;
                     float derivative = e - lastError;
                     lval = (int) (dval - (k * kSym * e) + Kd * derivative); //sensor reading are no symetrical, hence constant 1.7 adjust
                     rval = (int) (dval + (k * e) + Kd * derivative);
