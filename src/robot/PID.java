@@ -47,8 +47,8 @@ public class PID {
                     e -= 0.42;
                     float derivative = e - lastError;
                     integral += e;
-                    lval = (int) (dval - (k * kSym * e) + Kd * derivative + Ki * integral); //sensor reading are no symetrical, hence constant 1.7 adjust
-                    rval = (int) (dval + (k * e) + Kd * derivative + Ki * integral);
+                    lval = (int) (dval + (k * kSym * e) + Kd * derivative + Ki * integral); //sensor reading are no symetrical, hence constant 1.7 adjust
+                    rval = (int) (dval - (k * e) + Kd * derivative + Ki * integral);
 
                     lastError = e;
                 }
@@ -103,6 +103,10 @@ public class PID {
                 }
                 else if(index%6 == 5)
                     Ki -=1;
+                else if(index%6 == 3) {
+                    PD.start();
+                    return;
+                }
             }
             else if(Button.getButtons() == Button.ID_ENTER) { //PAUSE
                 Delay.msDelay(500);
@@ -115,7 +119,7 @@ public class PID {
                 }
             }
 
-            float[] vals = {kSym, k, Kd, 2, dval, Ki};
+            float[] vals = {kSym, k, Kd, 3, dval, Ki};
 
             String[] str = {"Ksym: ", "Kp: ", "Kd: ", "P-PD-PID: ", "def speed: ", "Ki: "};
             str[index%str.length]= '>' + str[index%str.length];

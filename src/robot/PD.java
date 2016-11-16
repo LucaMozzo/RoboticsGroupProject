@@ -82,6 +82,10 @@ public class PD {
                     //vals[2]+=100;
                 else if(index%5 == 4)
                     dval += 20;
+                else if(index%5 == 3) {
+                    PID.start();
+                    return;
+                }
                 //vals[3]+=20;
             }
             else if (Button.getButtons() == Button.ID_LEFT){
