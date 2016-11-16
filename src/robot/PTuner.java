@@ -65,13 +65,14 @@ public final class PTuner {
                 //Delay.msDelay(500);
             }
 
-            float[] vals = {kSym, k, 0, 1, dval};
 
-            if (Button.getButtons() == Button.ID_UP)
-                ++index;
+
+            if (Button.getButtons() == Button.ID_UP) {
+                if (index > 0)
+                    ++index;
+            }
             else if (Button.getButtons() == Button.ID_DOWN) {
-                if(index > 0)
-                    --index;
+                    ++index;
             }
             else if (Button.getButtons() == Button.ID_RIGHT){
                 if(index == 0)
@@ -104,9 +105,9 @@ public final class PTuner {
                 }
             }
 
+            float[] vals = {kSym, k, 0, 1, dval};
 
-
-            String[] str = {"Ksym: ", "Kp: ", "Kd: ", "Tuner(1=P 2=PD): ", "def speed: "};
+            String[] str = {"Ksym: ", "Kp: ", "Kd: ", "1->P 2->PD: ", "def speed: "};
             str[index%str.length]= '>' + str[index%str.length];
             utils.Utility.display(str, vals);
 
