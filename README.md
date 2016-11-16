@@ -43,8 +43,8 @@ Download the [tool](http://www.rapidpm.org/2013/12/27/developing-lejos-programs-
 <h3>Working configuration</h3>
 <ul>
 <li>PID config</li>
-<li>Ksym = 1.4</li>
+<li>Ksym = 1.4 (1.3)</li>
 <li>Kp = 320</li>
 <li>Kd = 100</li>
-<li>Ki = 3</li>
+<li>Ki = 3 (4 more stable)</li>
 <ul>
