@@ -70,34 +70,34 @@ public class PD {
                 --index;
             }
             else if (Button.getButtons() == Button.ID_RIGHT){
-                if(index%5 == 0)
+                if(index%4 == 0)
                     //the values might need to be modified from inside the array with indexes since the array doesn't update idk why
                     kSym += 0.1;
                     //vals[0]+=0.1;
-                else if(index%5 == 1)
+                else if(index%4 == 1)
                     k += 10;
                     //vals[1]+=10;
-                else if(index%5 == 2)
+                else if(index%4 == 2)
                     Kd += 100;
                     //vals[2]+=100;
-                else if(index%5 == 4)
+                else if(index%4 == 4)
                     dval += 20;
                 //vals[3]+=20;
             }
             else if (Button.getButtons() == Button.ID_LEFT){
-                if(index%5 == 0)
+                if(index%4 == 0)
                     kSym -= 0.1;
                     //vals[0]-=0.1;
-                else if(index%5 == 1)
+                else if(index%4 == 1)
                     k -= 10;
                     //vals[1]-=10;
-                else if(index%5 == 2)
+                else if(index%4 == 2)
                     //vals[3]-=100;
                     Kd -= 100;
-                else if(index%5 == 4)
+                else if(index%4 == 4)
                     //vals[3]-=20;
                     dval -= 20;
-                else if(index%5 == 3) {
+                else if(index%4 == 3) {
                     PTuner.start();
                     return;
                 }
@@ -116,7 +116,7 @@ public class PD {
             float[] vals = {kSym, k, Kd, 2, dval};
 
             String[] str = {"Ksym: ", "Kp: ", "Kd: ", "1->P 2->PD: ", "def speed: "};
-            str[index%str.length]= '>' + str[index%str.length];
+            str[index%str.length-1]= '>' + str[index%str.length-1];
             utils.Utility.display(str, vals);
 
             Delay.msDelay(100);
