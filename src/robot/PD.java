@@ -16,11 +16,11 @@ import lejos.utility.Delay;
  */
 public class PD {
 
+    public static EV3LargeRegulatedMotor rMotor;
+    public static EV3LargeRegulatedMotor lMotor;
+    public static EV3ColorSensor lSensor;
+
     public static void start() {
-        Port port = LocalEV3.get().getPort("S1");
-        RegulatedMotor rMotor = new EV3LargeRegulatedMotor(MotorPort.A);
-        RegulatedMotor lMotor = new EV3LargeRegulatedMotor(MotorPort.B);
-        SensorModes lSensor = new EV3ColorSensor(port);
         SampleProvider colourSampleProvider = lSensor.getMode("Red");
 
 
@@ -44,9 +44,9 @@ public class PD {
 
                 lval = dval;
                 rval = dval;
-                e = sample[0];
+                e = sample[0];//offset
                 if (e < 0.3 || e > 0.45) { // filtering out  noise, so that robot can go straight
-                    e -= 0.42;
+                    e -= 0.425;
                     float derivative = e - lastError;
                     lval = (int) (dval - (k * kSym * e) + Kd * derivative); //sensor reading are no symetrical, hence constant 1.7 adjust
                     rval = (int) (dval + (k * e) + Kd * derivative);
@@ -64,40 +64,40 @@ public class PD {
 
             if (Button.getButtons() == Button.ID_UP) {
                 if (index > 0)
-                    ++index;
+                    --index;
             }
             else if (Button.getButtons() == Button.ID_DOWN) {
-                --index;
+                ++index;
             }
             else if (Button.getButtons() == Button.ID_RIGHT){
-                if(index%4 == 0)
+                if(index%5 == 0)
                     //the values might need to be modified from inside the array with indexes since the array doesn't update idk why
                     kSym += 0.1;
                     //vals[0]+=0.1;
-                else if(index%4 == 1)
+                else if(index%5 == 1)
                     k += 10;
                     //vals[1]+=10;
-                else if(index%4 == 2)
+                else if(index%5 == 2)
                     Kd += 100;
                     //vals[2]+=100;
-                else if(index%4 == 4)
+                else if(index%5 == 4)
                     dval += 20;
                 //vals[3]+=20;
             }
             else if (Button.getButtons() == Button.ID_LEFT){
-                if(index%4 == 0)
+                if(index%5 == 0)
                     kSym -= 0.1;
                     //vals[0]-=0.1;
-                else if(index%4 == 1)
+                else if(index%5 == 1)
                     k -= 10;
                     //vals[1]-=10;
-                else if(index%4 == 2)
+                else if(index%5 == 2)
                     //vals[3]-=100;
                     Kd -= 100;
-                else if(index%4 == 4)
+                else if(index%5 == 4)
                     //vals[3]-=20;
                     dval -= 20;
-                else if(index%4 == 3) {
+                else if(index%5 == 3) {
                     PTuner.start();
                     return;
                 }
@@ -116,7 +116,7 @@ public class PD {
             float[] vals = {kSym, k, Kd, 2, dval};
 
             String[] str = {"Ksym: ", "Kp: ", "Kd: ", "1->P 2->PD: ", "def speed: "};
-            str[index%str.length-1]= '>' + str[index%str.length-1];
+            str[index%str.length]= '>' + str[index%str.length];
             utils.Utility.display(str, vals);
 
             Delay.msDelay(100);
