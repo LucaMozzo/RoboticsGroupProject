@@ -18,20 +18,25 @@ import utils.Utility;
  */
 public class UltrasonicDetection implements Runnable {
     public void run() {
+
         RegulatedMotor motor = new EV3MediumRegulatedMotor(MotorPort.C);
         motor.setSpeed(50);
         SensorModes ultrasonicSensor = new EV3UltrasonicSensor(SensorPort.S2);
         SampleProvider distanceSampleProvider = ultrasonicSensor.getMode("Distance");
-
+      //  SampleProvider disatanceSampleProvider= ultrasonicSensor.getDistanceMode();   should work but doesn't
 
         float[] sample = new float[distanceSampleProvider.sampleSize()];
+        //while its 10 cm far from the obstacle + 2 cm for the deceleration
+ while (sample[0]<=0.12) {
 
+ }
+/*
         for(int i = 0; i < 45; ++i) {
             motor.rotate(4);
             distanceSampleProvider.fetchSample(sample, 0);
             Utility.display(sample[0]);
             Delay.msDelay(10);
-        }
+        }*/
         motor.rotate(-180);
     }
 
