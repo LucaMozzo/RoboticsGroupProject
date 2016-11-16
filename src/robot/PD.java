@@ -35,7 +35,7 @@ public class PD {
         float kSym = 1.3f;
         int index = 0; //menu index
 
-        int Kd = 10000;
+        int Kd = 100;
         float lastError = 0;
 
         while (true) {
@@ -78,7 +78,7 @@ public class PD {
                     k += 10;
                     //vals[1]+=10;
                 else if(index%5 == 2)
-                    Kd += 100;
+                    Kd += 10;
                     //vals[2]+=100;
                 else if(index%5 == 4)
                     dval += 20;
@@ -92,10 +92,8 @@ public class PD {
                     k -= 10;
                     //vals[1]-=10;
                 else if(index%5 == 2)
-                    //vals[3]-=100;
-                    Kd -= 100;
+                    Kd -= 10;
                 else if(index%5 == 4)
-                    //vals[3]-=20;
                     dval -= 20;
                 else if(index%5 == 3) {
                     PTuner.start();
@@ -115,7 +113,7 @@ public class PD {
 
             float[] vals = {kSym, k, Kd, 2, dval};
 
-            String[] str = {"Ksym: ", "Kp: ", "Kd: ", "1->P 2->PD: ", "def speed: "};
+            String[] str = {"Ksym: ", "Kp: ", "Kd: ", "P-PD-PID: ", "def speed: "};
             str[index%str.length]= '>' + str[index%str.length];
             utils.Utility.display(str, vals);
 
