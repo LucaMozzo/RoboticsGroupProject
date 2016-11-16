@@ -67,37 +67,37 @@ public class PD {
                     ++index;
             }
             else if (Button.getButtons() == Button.ID_DOWN) {
-                ++index;
+                --index;
             }
             else if (Button.getButtons() == Button.ID_RIGHT){
-                if(index == 0)
+                if(index%5 == 0)
                     //the values might need to be modified from inside the array with indexes since the array doesn't update idk why
                     kSym += 0.1;
                     //vals[0]+=0.1;
-                else if(index == 1)
+                else if(index%5 == 1)
                     k += 10;
                     //vals[1]+=10;
-                else if(index == 2)
+                else if(index%5 == 2)
                     Kd += 100;
                     //vals[2]+=100;
-                else if(index == 4)
+                else if(index%5 == 4)
                     dval += 20;
                 //vals[3]+=20;
             }
             else if (Button.getButtons() == Button.ID_LEFT){
-                if(index == 0)
+                if(index%5 == 0)
                     kSym -= 0.1;
                     //vals[0]-=0.1;
-                else if(index == 1)
+                else if(index%5 == 1)
                     k -= 10;
                     //vals[1]-=10;
-                else if(index == 2)
+                else if(index%5 == 2)
                     //vals[3]-=100;
                     Kd -= 100;
-                else if(index == 4)
+                else if(index%5 == 4)
                     //vals[3]-=20;
                     dval -= 20;
-                else if(index == 3) {
+                else if(index%5 == 3) {
                     PTuner.start();
                     return;
                 }
