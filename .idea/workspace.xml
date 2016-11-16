@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="05a5b637-bfca-4184-9784-325c83e838dc" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/robot/UltrasonicDetection.java" afterPath="$PROJECT_DIR$/src/robot/UltrasonicDetection.java" />
     </list>
     <ignored path="RoboticsGroupProject.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -499,7 +498,7 @@
       <workItem from="1478686704962" duration="6995000" />
       <workItem from="1478863783001" duration="9811000" />
       <workItem from="1478883277022" duration="11000" />
-      <workItem from="1479277475899" duration="16000" />
+      <workItem from="1479277475899" duration="58000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1475661148512</created>
@@ -613,11 +612,18 @@
       <option name="project" value="LOCAL" />
       <updated>1478876378160</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Changing UltraSonicDetection">
+      <created>1479277515406</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1479277515406</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="53854000" />
+    <option name="totallyTimeSpent" value="53896000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -712,7 +718,8 @@
     <MESSAGE value="P controller still in the works" />
     <MESSAGE value="added k test" />
     <MESSAGE value="added menu and PD tuner" />
-    <option name="LAST_COMMIT_MESSAGE" value="added menu and PD tuner" />
+    <MESSAGE value="Changing UltraSonicDetection" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changing UltraSonicDetection" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
