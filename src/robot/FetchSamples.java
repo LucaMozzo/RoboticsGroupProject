@@ -26,7 +26,7 @@ public class FetchSamples {
 
         while(true){
             colourSampleProvider.fetchSample(sample,0);
-            Utility.displayString(String.valueOf(sample[0]));
+            Utility.display(String.valueOf(sample[0]));
             Delay.msDelay(100);
         }
     }
