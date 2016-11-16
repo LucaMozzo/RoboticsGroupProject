@@ -19,7 +19,7 @@ Download the [tool](http://www.rapidpm.org/2013/12/27/developing-lejos-programs-
 <ul>
 <li>dval = 200</li>
 <li> float k = 320; </li>
-<li> double e= float sample and if (e &lg 0.3 || e &gt 0.45) then e-=0.42; </li> 
+<li> double e= float sample and if (e &lt 0.3 || e &gt 0.45) then e-=0.42; </li> 
 <li> float kprop = 1.3; </li>
 </ul>
 
