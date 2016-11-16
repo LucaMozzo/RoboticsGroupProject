@@ -4,7 +4,9 @@ import lejos.hardware.ev3.LocalEV3;
 import lejos.hardware.motor.EV3LargeRegulatedMotor;
 import lejos.hardware.port.MotorPort;
 import lejos.hardware.port.Port;
+import lejos.hardware.port.SensorPort;
 import lejos.hardware.sensor.EV3ColorSensor;
+import lejos.hardware.sensor.EV3UltrasonicSensor;
 import lejos.hardware.sensor.SensorModes;
 import lejos.robotics.RegulatedMotor;
 import lejos.robotics.SampleProvider;
@@ -17,15 +19,14 @@ import utils.Utility;
 public class FetchSamples {
 
     public static void start(){
-        Port port = LocalEV3.get().getPort("S1");
-        SensorModes colourSensor = new EV3ColorSensor(port);
-        SampleProvider colourSampleProvider = colourSensor.getMode("Red");
+        EV3UltrasonicSensor ultrasonicSensor = new EV3UltrasonicSensor(SensorPort.S2);
+     SampleProvider ultraSensorProvider = ultrasonicSensor.getDistanceMode();
 
 
-        float[] sample = new float[colourSampleProvider.sampleSize()];
+        float[] sample = new float[ultraSensorProvider.sampleSize()];
 
         while(true){
-            colourSampleProvider.fetchSample(sample,0);
+            ultraSensorProvider.fetchSample(sample,0);
             Utility.display(String.valueOf(sample[0]));
             Delay.msDelay(100);
         }

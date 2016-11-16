@@ -1,3 +1,4 @@
+import robot.FetchSamples;
 import robot.LineFollower;
 import robot.PTuner;
 import robot.TestLight;
@@ -10,8 +11,9 @@ import robot.TestLight;
 public class Main {
     public static void main(String[] args){
         //(new Thread(new UltrasonicDetection())).start(); ultrasonic
-        PTuner.setup();
-        PTuner.start();
+       // PTuner.setup();
+       // PTuner.start();
+        FetchSamples.start();
 
         //TestEncoder.start();
 
