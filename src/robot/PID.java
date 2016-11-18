@@ -72,13 +72,10 @@ public class PID {
                 if(index%6 == 0)
                     //the values might need to be modified from inside the array with indexes since the array doesn't update idk why
                     kSym += 0.05;//0.1
-                    //vals[0]+=0.1;
                 else if(index%6 == 1)
                     k += 1;//10
-                    //vals[1]+=10;
                 else if(index%6 == 2)
                     Kd += 1;//10
-                    //vals[2]+=100;
                 else if(index%6 == 4)
                     dval += 5;//20
                 else if(index%6 == 5)
@@ -87,22 +84,18 @@ public class PID {
             else if (Button.getButtons() == Button.ID_LEFT){
                 if(index%6 == 0)
                     kSym -= 0.05;//0.1
-                    //vals[0]-=0.1;
                 else if(index%6 == 1)
                     k -= 1;//10
-                    //vals[1]-=10;
                 else if(index%6 == 2)
-                    //vals[3]-=100;
                     Kd -= 1;//10
                 else if(index%6 == 4)
-                    //vals[3]-=20;
                     dval -= 5;//20
                 else if(index%6 == 3) {
                     PTuner.start();
                     return;
                 }
                 else if(index%6 == 5)
-                    Ki -=1;
+                    Ki -=0.2;//1
                 else if(index%6 == 3) {
                     PD.start();
                     return;
