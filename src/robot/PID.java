@@ -48,7 +48,7 @@ public class PID {
                     float derivative = e - lastError;
                     integral += e;
                     lval = (int) (dval + (k * kSym * e) + Kd * derivative + Ki * integral); //sensor reading are no symetrical, hence constant 1.7 adjust
-                    rval = (int) (dval - (k * e) + Kd * derivative + Ki * integral);
+                    rval = (int) (dval - ((k * e) + Kd * derivative + Ki * integral));
 
                     lastError = e;
                 }
