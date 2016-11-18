@@ -13,7 +13,7 @@ public class Main {
         //(new Thread(new UltrasonicDetection())).start(); ultrasonic
         PTuner.setup();
         PTuner.start();
-        FetchSamples.start();
+       // FetchSamples.start();
 //
         //TestEncoder.start();
 
