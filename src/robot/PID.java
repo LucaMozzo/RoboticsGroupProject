@@ -23,17 +23,17 @@ public class PID {
 
         int lval;
         int rval;
-        int dval = 200; // base motor value
-        float k = 320; //constant of proportionality
+        int dval = 190; // base motor value
+        float k = 293; //constant of proportionality
         float e; // error term and sensor recorded value (dual use
 
         float kSym = 1.3f;
         int index = 0; //menu index
 
-        int Kd = 100; // deferential constant
+        int Kd = 40; // deferential constant
         float lastError = 0; //
 
-        float Ki = 1; //integral constant
+        float Ki = 4.4f; //integral constant
         int integral = 0;
 
         while (true) {
