@@ -21,7 +21,11 @@ import utils.Utility;
  */
 public final class UltrasonicDetection {
 
-    public static void start(Thread lineFollowerThread/*, Thread avoidObstacleThread*/) throws InterruptedException {
+    public static void start(Thread lineFollowerThread, Thread avoidObstacleThread) throws InterruptedException {
+        //DONT TOUCH-----------------------------------------------------------------
+        MultiThreadingSync.setLineFollowerMode(); //turns off avoid obstacle mode
+        lineFollowerThread.start();
+        //-------------------------------------------------------------------------
 
         RegulatedMotor motor = new EV3MediumRegulatedMotor(MotorPort.C);
         motor.setSpeed(50);
@@ -32,6 +36,14 @@ public final class UltrasonicDetection {
         //while its 10 or meter has to be checked far from the obstacle + 2 cm for the deceleration
 
         while (true) {
+
+            //DONT TOUCH-----------------------------------------------------------------
+            //while it avoids the obstacle, exclude this thread
+            while(MultiThreadingSync.getMode() == 2){
+                Delay.msDelay(200);
+            }
+            //------------------------------------------------------------------------------
+
             distanceSampleProvider.fetchSample(sample, 0);
 
             Utility.display("aaaaaaaaaa");

@@ -10,7 +10,9 @@ public class MultiThreadingSync {
      */
     public static int mode = 1;
 
-    public static synchronized void setMode(int newMode){mode = newMode;}
+    public static synchronized void setLineFollowerMode(){mode = 1;}
+
+    public static synchronized void setAvoidObstacleMode(){mode = 2;}
 
     public static synchronized int getMode(){return mode;}
 }
