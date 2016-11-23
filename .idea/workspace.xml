@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="05a5b637-bfca-4184-9784-325c83e838dc" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RoboticsGroupProject.jar" afterPath="$PROJECT_DIR$/RoboticsGroupProject.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/RoboticsGroupProject_jar/RoboticsGroupProject.jar" afterPath="$PROJECT_DIR$/out/artifacts/RoboticsGroupProject_jar/RoboticsGroupProject.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main.java" afterPath="$PROJECT_DIR$/src/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/robot/FetchSamples.java" afterPath="$PROJECT_DIR$/src/robot/FetchSamples.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/robot/UltrasonicDetection.java" afterPath="$PROJECT_DIR$/src/robot/UltrasonicDetection.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/utils/Utility.java" afterPath="$PROJECT_DIR$/src/utils/Utility.java" />
     </list>
     <ignored path="RoboticsGroupProject.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -34,7 +32,7 @@
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="15" column="29" selection-start-line="15" selection-start-column="29" selection-end-line="15" selection-end-column="29" />
+              <caret line="14" column="29" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -46,7 +44,7 @@
         <entry file="file://$PROJECT_DIR$/src/robot/PID.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="56" column="16" selection-start-line="56" selection-start-column="16" selection-end-line="57" selection-end-column="33" />
+              <caret line="56" column="16" selection-start-line="56" selection-start-column="16" selection-end-line="56" selection-end-column="16" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -54,21 +52,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FetchSamples.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="FetchSamples.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/robot/FetchSamples.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.43589744">
+            <state vertical-scroll-proportion="0.0">
               <caret line="42" column="13" selection-start-line="42" selection-start-column="13" selection-end-line="42" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UltrasonicDetection.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="UltrasonicDetection.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/robot/UltrasonicDetection.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="26" column="32" selection-start-line="26" selection-start-column="32" selection-end-line="26" selection-end-column="32" />
+            <state vertical-scroll-proportion="0.32352942">
+              <caret line="23" column="49" selection-start-line="23" selection-start-column="49" selection-end-line="23" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -78,7 +76,7 @@
         <entry file="file://$PROJECT_DIR$/src/robot/MultiThreadingSync.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="16" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+              <caret line="18" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -87,8 +85,8 @@
       <file leaf-file-name="Utility.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/utils/Utility.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-14.235294">
-              <caret line="64" column="33" selection-start-line="64" selection-start-column="33" selection-end-line="64" selection-end-column="33" />
+            <state vertical-scroll-proportion="-5.647059">
+              <caret line="52" column="40" selection-start-line="52" selection-start-column="17" selection-end-line="52" selection-end-column="40" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -126,10 +124,10 @@
         <option value="$PROJECT_DIR$/src/robot/PD.java" />
         <option value="$PROJECT_DIR$/src/robot/PTuner.java" />
         <option value="$PROJECT_DIR$/src/robot/PID.java" />
-        <option value="$PROJECT_DIR$/src/robot/UltrasonicDetection.java" />
-        <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/src/utils/Utility.java" />
         <option value="$PROJECT_DIR$/src/robot/FetchSamples.java" />
+        <option value="$PROJECT_DIR$/src/Main.java" />
+        <option value="$PROJECT_DIR$/src/robot/UltrasonicDetection.java" />
       </list>
     </option>
   </component>
@@ -272,7 +270,9 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/Main.java</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/src/robot/MultiThreadingSync.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/robot/PID.java</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/src/robot/UltrasonicDetection.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
@@ -281,6 +281,7 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="CREATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/robot/Avoid.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Deleted" />
@@ -888,7 +889,7 @@
       <workItem from="1478883277022" duration="11000" />
       <workItem from="1479277475899" duration="6620000" />
       <workItem from="1479466013843" duration="1987000" />
-      <workItem from="1479895039371" duration="5547000" />
+      <workItem from="1479895039371" duration="5855000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1475661148512</created>
@@ -1052,11 +1053,17 @@
       <option name="project" value="LOCAL" />
       <updated>1479897940353</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="starting to implement obstacle avoidance via the fetch samples funtion">
+      <created>1479900620146</created>
+      <option name="number" value="00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1479900620146</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="67992000" />
+    <option name="totallyTimeSpent" value="68300000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1073,12 +1080,12 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916668" sideWeight="0.49798793" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.328125" sideWeight="0.49398196" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.328125" sideWeight="0.4899699" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.153125" sideWeight="0.48595786" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.153125" sideWeight="0.51404214" order="10" side_tool="true" content_ui="tabs" x="311" y="648" width="546" height="409" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.153125" sideWeight="0.48595786" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.328125" sideWeight="0.5100301" order="10" side_tool="true" content_ui="tabs" x="311" y="648" width="546" height="409" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.325" sideWeight="0.388833" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16950853" sideWeight="0.2195122" order="0" side_tool="false" content_ui="combo" />
@@ -1158,7 +1165,8 @@
     <MESSAGE value="Changing fetch sample" />
     <MESSAGE value="removed useless files + working clockwise" />
     <MESSAGE value="changed default values" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed default values" />
+    <MESSAGE value="starting to implement obstacle avoidance via the fetch samples funtion" />
+    <option name="LAST_COMMIT_MESSAGE" value="starting to implement obstacle avoidance via the fetch samples funtion" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1559,7 +1567,7 @@
     <entry file="file://$PROJECT_DIR$/src/robot/MultiThreadingSync.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="16" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <caret line="18" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1567,35 +1575,7 @@
     <entry file="file://$PROJECT_DIR$/src/robot/PID.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="56" column="16" selection-start-line="56" selection-start-column="16" selection-end-line="57" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/robot/UltrasonicDetection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="26" column="32" selection-start-line="26" selection-start-column="32" selection-end-line="26" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="15" column="29" selection-start-line="15" selection-start-column="29" selection-end-line="15" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/utils/Utility.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.235294">
-          <caret line="64" column="33" selection-start-line="64" selection-start-column="33" selection-end-line="64" selection-end-column="33" />
+          <caret line="56" column="16" selection-start-line="56" selection-start-column="16" selection-end-line="56" selection-end-column="16" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1604,8 +1584,36 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/robot/FetchSamples.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.43589744">
+        <state vertical-scroll-proportion="0.0">
           <caret line="42" column="13" selection-start-line="42" selection-start-column="13" selection-end-line="42" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="14" column="29" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/utils/Utility.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.647059">
+          <caret line="52" column="40" selection-start-line="52" selection-start-column="17" selection-end-line="52" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/robot/UltrasonicDetection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.32352942">
+          <caret line="23" column="49" selection-start-line="23" selection-start-column="49" selection-end-line="23" selection-end-column="49" />
           <folding />
         </state>
       </provider>

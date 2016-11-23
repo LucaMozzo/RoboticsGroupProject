@@ -21,6 +21,8 @@ import utils.Utility;
  */
 public final class UltrasonicDetection {
 
+    public static EV3MediumRegulatedMotor sMotor;
+
     public static void start(Thread lineFollowerThread, Thread avoidObstacleThread) throws InterruptedException {
         //DONT TOUCH-----------------------------------------------------------------
         MultiThreadingSync.setLineFollowerMode(); //turns off avoid obstacle mode
