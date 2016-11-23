@@ -1,7 +1,7 @@
 package robot;
 
 /**
- * DON'T EDIT THIS FILE UNLESS YOU
+ * DON'T EDIT THIS FILE UNLESS YOU KNOW WHAT YOU'RE DOING
  */
 public class MultiThreadingSync {
     /*
