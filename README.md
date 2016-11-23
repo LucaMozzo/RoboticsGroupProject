@@ -44,7 +44,7 @@ Download the [tool](http://www.rapidpm.org/2013/12/27/developing-lejos-programs-
 <ul>
 <li>PID config</li>
 <li>Ksym = 1.4 (1.3)</li>
-<li>Kp = 320</li>
-<li>Kd = 100</li>
-<li>Ki = 3 (4 more stable)</li>
+<li>Kp = 290</li>
+<li>Kd = 40</li>
+<li>Ki = 4.4 (4 more stable)</li>
 <ul>
