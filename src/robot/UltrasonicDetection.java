@@ -21,21 +21,29 @@ import utils.Utility;
  */
 public final class UltrasonicDetection {
 
-    public static EV3MediumRegulatedMotor sMotor;
-    public static EV3LargeRegulatedMotor rMotor;
-    public static EV3LargeRegulatedMotor lMotor;
-    public static EV3ColorSensor lSensor;
-    public static EV3UltrasonicSensor uSonar;
+    public static void start(Thread lineFollowerThread, Thread avoidObstacleThread) throws InterruptedException {
+        //DONT TOUCH-----------------------------------------------------------------
+        MultiThreadingSync.setLineFollowerMode(); //turns off avoid obstacle mode
+        lineFollowerThread.start();
+        //-------------------------------------------------------------------------
 
-    public static void start(Thread lineFollowerThread/*, Thread avoidObstacleThread*/) throws InterruptedException {
-
-        sMotor.setSpeed(50);
+        RegulatedMotor motor = new EV3MediumRegulatedMotor(MotorPort.C);
+        motor.setSpeed(50);
         //might need to adjust the speed of the medium motor... but based on the circular motion factor
-        SampleProvider distanceSampleProvider = uSonar.getMode("Distance");
+        EV3UltrasonicSensor ultrasonicSensor = new EV3UltrasonicSensor(SensorPort.S2);
+        SampleProvider distanceSampleProvider = ultrasonicSensor.getMode("Distance");
         float[] sample = new float[distanceSampleProvider.sampleSize()];
         //while its 10 or meter has to be checked far from the obstacle + 2 cm for the deceleration
 
         while (true) {
+
+            //DONT TOUCH-----------------------------------------------------------------
+            //while it avoids the obstacle, exclude this thread
+            while(MultiThreadingSync.getMode() == 2){
+                Delay.msDelay(200);
+            }
+            //------------------------------------------------------------------------------
+
             distanceSampleProvider.fetchSample(sample, 0);
 
             Utility.display("aaaaaaaaaa");
@@ -53,7 +61,7 @@ public final class UltrasonicDetection {
             Utility.display(sample[0]);
             Delay.msDelay(10);
         }*/
-            sMotor.rotate(-180);
+            motor.rotate(-180);
         }
     }
 

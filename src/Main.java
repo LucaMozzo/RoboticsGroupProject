@@ -7,13 +7,14 @@ import utils.Utility;
  * Main class of the program
  */
 public class Main {
-    public static void main(String[] args){
-        //(new Thread(new UltrasonicDetection())).start(); ultrasonic
-       // PTuner.setup();
-       // PTuner.start();
-       //FetchSamples.start();
+    public static void main(String[] args) throws Exception{
         Utility.setup();
-        FetchSamples.start();
+        Thread pid = new Thread();
+        Thread avoid = new Thread();
+        (new UltrasonicDetection()).start(pid, avoid);
+        //FetchSamples.start();
+
+        //PID.start();
         //TestEncoder.start();
 
 

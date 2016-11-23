@@ -9,13 +9,13 @@ import lejos.utility.Delay;
 /**
  * Created by lucam on 16/11/2016.
  */
-public class PID {
+public class PID extends Thread{
 
     public static EV3LargeRegulatedMotor rMotor;
     public static EV3LargeRegulatedMotor lMotor;
     public static EV3ColorSensor lSensor;
 
-    public static void start() {
+    public void run() {
         SampleProvider colourSampleProvider = lSensor.getMode("Red");
 
 
@@ -36,7 +36,7 @@ public class PID {
         float Ki = 4.4f; //integral constant
         int integral = 0;
 
-        while (true) {
+        while (MultiThreadingSync.getMode() == 1) {
             while (Button.getButtons() == 0) {
                 colourSampleProvider.fetchSample(sample, 0);
 
@@ -112,5 +112,6 @@ public class PID {
 
             Delay.msDelay(100);
         }
+        stop();
     }
 }
