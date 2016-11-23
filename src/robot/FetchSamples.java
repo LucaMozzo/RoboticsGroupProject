@@ -20,10 +20,11 @@ public class FetchSamples {
 
     public static void start(){
         EV3UltrasonicSensor ultrasonicSensor = new EV3UltrasonicSensor(SensorPort.S2);
-     SampleProvider ultraSensorProvider = ultrasonicSensor.getDistanceMode();
+        SampleProvider ultraSensorProvider = ultrasonicSensor.getDistanceMode();
 
 
         float[] sample = new float[ultraSensorProvider.sampleSize()];
+
 
         while(true){
             ultraSensorProvider.fetchSample(sample,0);
