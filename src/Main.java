@@ -1,7 +1,5 @@
-import robot.FetchSamples;
-import robot.LineFollower;
-import robot.PTuner;
-import robot.TestLight;
+import robot.*;
+import utils.Utility;
 
 
 /**
@@ -13,8 +11,9 @@ public class Main {
         //(new Thread(new UltrasonicDetection())).start(); ultrasonic
        // PTuner.setup();
        // PTuner.start();
-        FetchSamples.start();
-
+       //FetchSamples.start();
+        Utility.setup();
+        PID.start();
         //TestEncoder.start();
 
 
