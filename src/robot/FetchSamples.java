@@ -45,13 +45,43 @@ public class FetchSamples {
             rMotor.stop();
             lMotor.stop();
 
-            sMotor.rotate(90, true); // true means that code will not wait for return to continue
-            rMotor.rotate(230, true);
-            lMotor.rotate(-230, true);
+            sMotor.rotate(-90, true); // true means that code will not wait for return to continue
+            rMotor.rotate(-210, true);
+            lMotor.rotate(210, true);
             lSensor.fetchSample(sampleLight,0);
+
+            //PID VALUES
+            int lval;
+            int rval;
+            int dval = 50; // base motor value
+            float k = 293; //constant of proportionality
+            float e; // error term and sensor recorded value (dual use
+            float kSym = 1.3f;
+            int Kd = 40; // deferential constant
+            float lastError = 0; //
+            float Ki = 4.4f; //integral constant
+            int integral = 0;
 
             while(sampleLight[0] < 0.45){
                 lSensor.fetchSample(sampleLight,0);
+                sSensor.fetchSample(sampleSonar, 0);
+
+                lval = dval;
+                rval = dval;
+                e = sampleLight[0];//offset
+                if (e < 0.06 || e > 0.15) { // filtering out  noise, so that robot can go straight
+                    e -= 0.1;
+                    lastError = e - lastError;
+                    integral += e;
+                    rval = (int) (dval + (k * kSym * e) + Kd * lastError + Ki * integral); //sensor reading are no symetrical, hence constant 1.7 adjust
+                    lval = (int) (dval - ((k * e) + Kd * lastError + Ki * integral));
+
+                    lastError = e;
+                }
+                lMotor.setSpeed(lval);
+                rMotor.setSpeed(rval);
+                lMotor.forward();
+                rMotor.forward();
             }
 
             Delay.msDelay(5000);
