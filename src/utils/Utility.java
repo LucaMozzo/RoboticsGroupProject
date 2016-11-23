@@ -3,10 +3,14 @@ package utils;
 import lejos.hardware.ev3.LocalEV3;
 import lejos.hardware.lcd.LCD;
 import lejos.hardware.motor.EV3LargeRegulatedMotor;
+import lejos.hardware.motor.EV3MediumRegulatedMotor;
 import lejos.hardware.port.MotorPort;
 import lejos.hardware.port.Port;
 import lejos.hardware.sensor.EV3ColorSensor;
+import lejos.hardware.sensor.EV3UltrasonicSensor;
+import robot.FetchSamples;
 import robot.PID;
+import robot.UltrasonicDetection;
 
 import java.security.InvalidParameterException;
 
@@ -18,6 +22,8 @@ public final class Utility {
   private static EV3LargeRegulatedMotor rMotor;
   private static EV3LargeRegulatedMotor lMotor;
   private static EV3ColorSensor lSensor;
+  private static EV3MediumRegulatedMotor sMotor;
+  private static EV3UltrasonicSensor sSensor;
 
   public static void display(String str){
     LCD.clear();
@@ -40,16 +46,26 @@ public final class Utility {
   }
 
   public static void setup(){
-    Port port = LocalEV3.get().getPort("S1");
+    Port port1 = LocalEV3.get().getPort("S1");
+    Port port2 = LocalEV3.get().getPort("S2");
     rMotor = new EV3LargeRegulatedMotor(MotorPort.A);
     lMotor = new EV3LargeRegulatedMotor(MotorPort.B);
-    lSensor = new EV3ColorSensor(port);
+    sMotor = new EV3MediumRegulatedMotor(MotorPort.C);
+    lSensor = new EV3ColorSensor(port1);
+    sSensor = new EV3UltrasonicSensor(port2);
 
     //sets the motors and sensors for the other classes
 
     PID.lMotor = lMotor;
     PID.rMotor = rMotor;
     PID.lSensor = lSensor;
+    UltrasonicDetection.sMotor = sMotor;
+
+    FetchSamples.lMotor = lMotor;
+    FetchSamples.rMotor = rMotor;
+    FetchSamples.lSensor = lSensor;
+    FetchSamples.sMotor = sMotor;
+    FetchSamples.sSensor = sSensor;
   }
 
   public static void display(String[] str, float[] f){

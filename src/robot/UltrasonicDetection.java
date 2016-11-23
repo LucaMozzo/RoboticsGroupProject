@@ -21,13 +21,17 @@ import utils.Utility;
  */
 public final class UltrasonicDetection {
 
+    public static EV3MediumRegulatedMotor sMotor;
+    public static EV3LargeRegulatedMotor rMotor;
+    public static EV3LargeRegulatedMotor lMotor;
+    public static EV3ColorSensor lSensor;
+    public static EV3UltrasonicSensor uSonar;
+
     public static void start(Thread lineFollowerThread/*, Thread avoidObstacleThread*/) throws InterruptedException {
 
-        RegulatedMotor motor = new EV3MediumRegulatedMotor(MotorPort.C);
-        motor.setSpeed(50);
+        sMotor.setSpeed(50);
         //might need to adjust the speed of the medium motor... but based on the circular motion factor
-        EV3UltrasonicSensor ultrasonicSensor = new EV3UltrasonicSensor(SensorPort.S2);
-        SampleProvider distanceSampleProvider = ultrasonicSensor.getMode("Distance");
+        SampleProvider distanceSampleProvider = uSonar.getMode("Distance");
         float[] sample = new float[distanceSampleProvider.sampleSize()];
         //while its 10 or meter has to be checked far from the obstacle + 2 cm for the deceleration
 
@@ -49,7 +53,7 @@ public final class UltrasonicDetection {
             Utility.display(sample[0]);
             Delay.msDelay(10);
         }*/
-            motor.rotate(-180);
+            sMotor.rotate(-180);
         }
     }
 
