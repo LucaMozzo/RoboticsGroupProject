@@ -34,57 +34,85 @@ public class FetchSamples {
 
             float[] sampleLight = new float[lSensor.sampleSize()];
 
-            while(sampleSonar[0] >0.1){
+            while(sampleSonar[0] >0.05){
                 sSensor.fetchSample(sampleSonar,0);
                 rMotor.setSpeed(300);
                 lMotor.setSpeed(300);
                 lMotor.forward();
                 rMotor.forward();
+                utils.Utility.display(new String[]{"Error"}, new float[]{sampleSonar[0]});
             }
 
             rMotor.stop();
             lMotor.stop();
 
-            sMotor.rotate(-90, true); // true means that code will not wait for return to continue
-            rMotor.rotate(-210, true);
-            lMotor.rotate(210, true);
-            lSensor.fetchSample(sampleLight,0);
+            sMotor.rotate(-90, true);
+            rMotor.rotate(-155, true);
+            lMotor.rotate(155, true);
+            Delay.msDelay(1000);
+            sSensor.fetchSample(sampleSonar, 0);
 
-            //PID VALUES
-            int lval;
-            int rval;
-            int dval = 50; // base motor value
-            float k = 293; //constant of proportionality
-            float e; // error term and sensor recorded value (dual use
-            float kSym = 1.3f;
-            int Kd = 40; // deferential constant
-            float lastError = 0; //
-            float Ki = 4.4f; //integral constant
-            int integral = 0;
-
-            while(sampleLight[0] < 0.45){
-                lSensor.fetchSample(sampleLight,0);
+            /*
+            while(sampleSonar[0] > 0.03){
                 sSensor.fetchSample(sampleSonar, 0);
+                lMotor.rotate(10);
+                rMotor.rotate(-10);
+            }
 
-                lval = dval;
-                rval = dval;
-                e = sampleLight[0];//offset
-                if (e < 0.06 || e > 0.15) { // filtering out  noise, so that robot can go straight
-                    e -= 0.1;
+            rMotor.stop();
+            lMotor.stop();
+            Delay.msDelay(5000);
+
+
+
+
+            while(lastError>0){
+                sSensor.fetchSample(sampleSonar, 0);
+                e = sampleSonar[0];//offset
+                lval = (int) (100+Kd*lastError);
+                rval = (int) (100-Kd*lastError);
+                lMotor.setSpeed(lval);
+                rMotor.setSpeed(rval);
+                lastError = e;
+                rMotor.forward();
+                lMotor.forward();
+                utils.Utility.display(new String[]{"Last Error", "Error", "lval", "rval"}, new float[]{lastError, e, (float) lval, (float) rval});
+
+            }
+            */
+            //PD VALUES
+            int lval = 0;
+            int rval = 0;
+            int dval = 200; // base motor value
+
+            float e; // error term and sensor recorded value (dual use
+            int Kd = 300; // deferential constant
+            float lastError = 0; //
+            float k = 500; //constant of proportionality
+            float kSym = 1.3f;
+            sSensor.fetchSample(sampleSonar, 0);
+            Delay.msDelay(1000);
+
+            while(true){
+                //lSensor.fetchSample(sampleLight,0);
+                sSensor.fetchSample(sampleSonar, 0);
+                e = sampleSonar[0];//offset
+                if (e < 0.03 || e > 0.05) { // filtering out  noise, so that robot can go straight
+                    e -= 0.04;
                     lastError = e - lastError;
-                    integral += e;
-                    rval = (int) (dval + (k * kSym * e) + Kd * lastError + Ki * integral); //sensor reading are no symetrical, hence constant 1.7 adjust
-                    lval = (int) (dval - ((k * e) + Kd * lastError + Ki * integral));
-
+                    rval = (int) (dval + (k * kSym * e) + Kd * lastError ); //sensor reading are no symetrical, hence constant 1.7 adjust
+                    lval = (int) (dval - (k * e) + Kd * lastError );
                     lastError = e;
                 }
                 lMotor.setSpeed(lval);
                 rMotor.setSpeed(rval);
                 lMotor.forward();
                 rMotor.forward();
-            }
 
-            Delay.msDelay(5000);
+                float[] vals = {rval, dval, e, sampleSonar[0]};
+                String[] str = {"rval: ", "lval: ", "error", "sonar" };
+                utils.Utility.display(str, vals);
+            }
         }
 
     }
