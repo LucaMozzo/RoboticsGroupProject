@@ -5,6 +5,7 @@ import lejos.hardware.motor.EV3LargeRegulatedMotor;
 import lejos.hardware.sensor.EV3ColorSensor;
 import lejos.robotics.SampleProvider;
 import lejos.utility.Delay;
+import utils.Utility;
 
 /**
  * Created by lucam on 16/11/2016.
@@ -17,7 +18,6 @@ public class PID extends Thread{
 
     public void run() {
         SampleProvider colourSampleProvider = lSensor.getMode("Red");
-
 
         float[] sample = new float[colourSampleProvider.sampleSize()];
 
@@ -36,8 +36,8 @@ public class PID extends Thread{
         float Ki = 4.4f; //integral constant
         int integral = 0;
 
-        while (MultiThreadingSync.getMode() == 1) {
-            while (Button.getButtons() == 0) {
+        while (true) {
+            while (MultiThreadingSync.getMode() == 1/*Button.getButtons() == 0*/) {
                 colourSampleProvider.fetchSample(sample, 0);
 
                 lval = dval;
@@ -59,9 +59,16 @@ public class PID extends Thread{
                 //Delay.msDelay(500);
             }
 
+            Utility.display("PID terminated");
+            lMotor.setSpeed(0);
+            rMotor.setSpeed(0);
+            lMotor.forward();
+            rMotor.forward();
+            while(MultiThreadingSync.getMode() == 2){ Delay.msDelay(100);}
+
 //######################Tuning Buttons##################################################################################
 
-            if (Button.getButtons() == Button.ID_UP) {
+           /* if (Button.getButtons() == Button.ID_UP) {
                 if (index > 0)
                     --index;
             }
@@ -110,8 +117,7 @@ public class PID extends Thread{
             str[index%str.length]= '>' + str[index%str.length];
             utils.Utility.display(str, vals);
 
-            Delay.msDelay(100);
+            Delay.msDelay(100);*/
         }
-        stop();
     }
 }
