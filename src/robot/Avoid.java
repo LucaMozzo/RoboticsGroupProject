@@ -46,7 +46,7 @@ public class Avoid extends Thread {
         sMotor.rotate(-90, true);
         rMotor.rotate(-155, true);
         lMotor.rotate(155, true);
-        Delay.msDelay(1000);
+        //Delay.msDelay(1000);
         sSensor.fetchSample(sampleSonar, 0);
 
         //PD VALUES
@@ -60,7 +60,6 @@ public class Avoid extends Thread {
         float k = 500; //constant of proportionality
         float kSym = 1.3f;
         sSensor.fetchSample(sampleSonar, 0);
-        Delay.msDelay(1000);
 
         while(true){
 
@@ -85,6 +84,7 @@ public class Avoid extends Thread {
                 utils.Utility.display(str, vals);
             }
             MultiThreadingSync.setLineFollowerMode();
+            sMotor.rotate(90, true);
             while(MultiThreadingSync.getMode() == 1) { Delay.msDelay(100); }
         }
 

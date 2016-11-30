@@ -20,11 +20,11 @@ import java.security.InvalidParameterException;
  */
 public final class Utility {
 
-    private static EV3LargeRegulatedMotor rMotor;
-    private static EV3LargeRegulatedMotor lMotor;
-    private static EV3ColorSensor lSensor;
-    private static EV3MediumRegulatedMotor sMotor;
-    private static EV3UltrasonicSensor sSensor;
+    public static EV3LargeRegulatedMotor rMotor;
+    public static EV3LargeRegulatedMotor lMotor;
+    public static EV3ColorSensor lSensor;
+    public static EV3MediumRegulatedMotor sMotor;
+    public static EV3UltrasonicSensor sSensor;
 
     public static void display(String str){
         LCD.clear();
