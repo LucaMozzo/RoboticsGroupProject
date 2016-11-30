@@ -23,21 +23,21 @@ public class PID extends Thread{
 
         int lval;
         int rval;
-        int dval = 190; // base motor value
-        float k = 293; //constant of proportionality
+        int dval = 230; // base motor value
+        float k = 383; //constant of proportionality
         float e; // error term and sensor recorded value (dual use
 
         float kSym = 1.3f;
         int index = 0; //menu index
 
-        int Kd = 40; // deferential constant
+        int Kd = 50; // deferential constant
         float lastError = 0; //
 
-        float Ki = 4.4f; //integral constant
+        float Ki = 7.0f; //integral constant
         int integral = 0;
 
         while (true) {
-            while (MultiThreadingSync.getMode() == 1/*Button.getButtons() == 0*/) {
+            while (/*MultiThreadingSync.getMode() == 1*/Button.getButtons() == 0) {
                 colourSampleProvider.fetchSample(sample, 0);
 
                 lval = dval;
@@ -59,16 +59,16 @@ public class PID extends Thread{
                 //Delay.msDelay(500);
             }
 
-            Utility.display("PID terminated");
+            /*Utility.display("PID terminated");
             lMotor.setSpeed(0);
             rMotor.setSpeed(0);
             lMotor.forward();
             rMotor.forward();
-            while(MultiThreadingSync.getMode() == 2){ Delay.msDelay(100);}
+            while(MultiThreadingSync.getMode() == 2){ Delay.msDelay(100);}*/
 
 //######################Tuning Buttons##################################################################################
 
-           /* if (Button.getButtons() == Button.ID_UP) {
+            if (Button.getButtons() == Button.ID_UP) {
                 if (index > 0)
                     --index;
             }
@@ -78,27 +78,27 @@ public class PID extends Thread{
             else if (Button.getButtons() == Button.ID_RIGHT){
                 if(index%5 == 0)
                     //the values might need to be modified from inside the array with indexes since the array doesn't update idk why
-                    kSym += 0.05;//0.1
+                    kSym += 0.1;//0.1
                 else if(index%5 == 1)
-                    k += 1;//10
+                    k += 10;//10
                 else if(index%5 == 2)
-                    Kd += 1;//10
+                    Kd += 10;//10
                 else if(index%5 == 4)
-                    dval += 5;//20
+                    dval += 10;//20
                 else if(index%5 == 3)
-                    Ki +=0.2;//1
+                    Ki +=1;//1
             }
             else if (Button.getButtons() == Button.ID_LEFT){
                 if(index%5 == 0)
-                    kSym -= 0.05;//0.1
+                    kSym -= 0.1;//0.1
                 else if(index%5 == 1)
-                    k -= 1;//10
+                    k -= 10;//10
                 else if(index%5 == 2)
-                    Kd -= 1;//10
+                    Kd -= 10;//10
                 else if(index%5 == 4)
-                    dval -= 5;//20
+                    dval -= 20;//20
                 else if(index%5 == 3)
-                    Ki -=0.2;//1
+                    Ki -=1;//1
             }
             else if(Button.getButtons() == Button.ID_ENTER) { //PAUSE
                 Delay.msDelay(500);
@@ -117,7 +117,7 @@ public class PID extends Thread{
             str[index%str.length]= '>' + str[index%str.length];
             utils.Utility.display(str, vals);
 
-            Delay.msDelay(100);*/
+            Delay.msDelay(100);
         }
     }
 }

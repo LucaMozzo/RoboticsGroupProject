@@ -40,7 +40,7 @@ public class FetchSamples {
                 lMotor.setSpeed(300);
                 lMotor.forward();
                 rMotor.forward();
-                utils.Utility.display(new String[]{"Error"}, new float[]{sampleSonar[0]});
+                //utils.Utility.display(new String[]{"Error"}, new float[]{sampleSonar[0]});
             }
 
             rMotor.stop();
