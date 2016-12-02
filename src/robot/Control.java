@@ -29,6 +29,7 @@ public class Control {
 
 
     public static void pid(){
+        Utility.display("PID Luanched");
         int lval = 0;
         int rval = 0;
         int dval = 220; // base motor value
@@ -76,6 +77,7 @@ public class Control {
 
     public static void avoid(){
 
+        Utility.display("Avoid Launched");
         //----------Setting Up for circum navigation of obsticle ---------
         sMotor.rotate(-90, true);
         rMotor.setSpeed(40);
@@ -88,9 +90,10 @@ public class Control {
         lMotor.stop();
 
         //-----------PD Parameters-----------------------
-        int lval = 0;
-        int rval = 0;
         int dval = 200; // base motor value
+        int lval = dval;
+        int rval = dval;
+
 
         float e; // error term and sensor recorded value (dual use
         float kSym = 1.3f;
@@ -106,6 +109,8 @@ public class Control {
         while(flag){
             while(MultiThreadingSync.getMode()==2){//TODO break condition
                 sonarSampleProvider.fetchSample(sonarSample,0);
+                lightSampleProvider.fetchSample(lightSample, 0);
+
                 while(lightSample[0] > 0.45){
                     Utility.display("Avoiding", sonarSample[0]);
                     sonarSampleProvider.fetchSample(sonarSample,0);

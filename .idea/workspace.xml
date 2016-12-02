@@ -2,17 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="05a5b637-bfca-4184-9784-325c83e838dc" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/robot/Control.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/robot/SensorThread.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/robot/UltrasonicDetection.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RoboticsGroupProject.jar" afterPath="$PROJECT_DIR$/RoboticsGroupProject.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/RoboticsGroupProject_jar/RoboticsGroupProject.jar" afterPath="$PROJECT_DIR$/out/artifacts/RoboticsGroupProject_jar/RoboticsGroupProject.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main.java" afterPath="$PROJECT_DIR$/src/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/robot/Avoid.java" afterPath="$PROJECT_DIR$/src/robot/Avoid.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/robot/MultiThreadingSync.java" afterPath="$PROJECT_DIR$/src/robot/MultiThreadingSync.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/robot/PID.java" afterPath="$PROJECT_DIR$/src/robot/PID.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/utils/Utility.java" afterPath="$PROJECT_DIR$/src/utils/Utility.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/robot/Control.java" afterPath="$PROJECT_DIR$/src/robot/Control.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/robot/SensorThread.java" afterPath="$PROJECT_DIR$/src/robot/SensorThread.java" />
     </list>
     <ignored path="RoboticsGroupProject.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -39,7 +33,7 @@
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="27" column="5" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="20" />
+              <caret line="20" column="34" selection-start-line="20" selection-start-column="34" selection-end-line="20" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -49,7 +43,7 @@
         <entry file="file://$PROJECT_DIR$/src/robot/SensorThread.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="13" column="31" selection-start-line="13" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+              <caret line="24" column="40" selection-start-line="24" selection-start-column="40" selection-end-line="24" selection-end-column="40" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -60,8 +54,8 @@
       <file leaf-file-name="Control.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/robot/Control.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.2966752">
-              <caret line="153" column="26" selection-start-line="153" selection-start-column="26" selection-end-line="153" selection-end-column="26" />
+            <state vertical-scroll-proportion="2.4629157">
+              <caret line="163" column="9" selection-start-line="163" selection-start-column="9" selection-end-line="163" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -792,7 +786,7 @@
       <workItem from="1480278125359" duration="48000" />
       <workItem from="1480505205298" duration="4686000" />
       <workItem from="1480673519369" duration="1100000" />
-      <workItem from="1480690051105" duration="8299000" />
+      <workItem from="1480690051105" duration="9007000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1475661148512</created>
@@ -980,11 +974,23 @@
       <option name="project" value="LOCAL" />
       <updated>1480077687693</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="working on avoid obstacle">
+      <created>1480698360710</created>
+      <option name="number" value="00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1480698360710</updated>
+    </task>
+    <task id="LOCAL-00033" summary="working on avoid obstacle">
+      <created>1480698641593</created>
+      <option name="number" value="00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1480698641593</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="92396000" />
+    <option name="totallyTimeSpent" value="93104000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -997,7 +1003,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="2066" height="1120" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916668" sideWeight="0.49798793" order="5" side_tool="false" content_ui="tabs" />
@@ -1006,7 +1012,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15119916" sideWeight="0.48495486" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15104167" sideWeight="0.5150451" order="10" side_tool="true" content_ui="tabs" x="311" y="648" width="546" height="409" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15104167" sideWeight="0.5150451" order="10" side_tool="true" content_ui="tabs" x="311" y="648" width="546" height="409" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32395834" sideWeight="0.4348044" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20160481" sideWeight="0.2195122" order="0" side_tool="false" content_ui="combo" />
@@ -1457,24 +1463,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="27" column="5" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/robot/SensorThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="13" column="31" selection-start-line="13" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/utils/Utility.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1488,10 +1476,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="20" column="34" selection-start-line="20" selection-start-column="34" selection-end-line="20" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/robot/SensorThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="24" column="40" selection-start-line="24" selection-start-column="40" selection-end-line="24" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/robot/Control.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2966752">
-          <caret line="153" column="26" selection-start-line="153" selection-start-column="26" selection-end-line="153" selection-end-column="26" />
+        <state vertical-scroll-proportion="2.4629157">
+          <caret line="163" column="9" selection-start-line="163" selection-start-column="9" selection-end-line="163" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
