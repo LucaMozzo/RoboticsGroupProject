@@ -2,9 +2,6 @@ import lejos.utility.Delay;
 import robot.*;
 import utils.Utility;
 
-import javax.rmi.CORBA.Util;
-
-
 /**
  * @author luca
  * Main class of the program

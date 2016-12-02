@@ -31,14 +31,14 @@ public class Avoid extends Thread {
 
         sSensor.fetchSample(sampleSonar,0);
 
-        while(sampleSonar[0] >0.05){
+        /*while(sampleSonar[0] >0.05){
             sSensor.fetchSample(sampleSonar,0);
             rMotor.setSpeed(300);
             lMotor.setSpeed(300);
             lMotor.forward();
             rMotor.forward();
-            utils.Utility.display(new String[]{"Error"}, new float[]{sampleSonar[0]});
-        }
+            //utils.Utility.display(new String[]{"Error"}, new float[]{sampleSonar[0]});
+        }*/
 
         rMotor.stop();
         lMotor.stop();
@@ -46,7 +46,7 @@ public class Avoid extends Thread {
         sMotor.rotate(-90, true);
         rMotor.rotate(-155, true);
         lMotor.rotate(155, true);
-        //Delay.msDelay(1000);
+        Delay.msDelay(1000);
         sSensor.fetchSample(sampleSonar, 0);
 
         //PD VALUES
@@ -60,7 +60,7 @@ public class Avoid extends Thread {
         float k = 500; //constant of proportionality
         float kSym = 1.3f;
         sSensor.fetchSample(sampleSonar, 0);
-
+        Delay.msDelay(1000);
         while(true){
 
             while(sampleLight[0] > 0.45){
@@ -70,8 +70,8 @@ public class Avoid extends Thread {
                 if (e < 0.03 || e > 0.05) { // filtering out  noise, so that robot can go straight
                     e -= 0.04;
                     lastError = e - lastError;
-                    rval = (int) (dval + (k * kSym * e) + Kd * lastError ); //sensor reading are no symetrical, hence constant 1.7 adjust
-                    lval = (int) (dval - (k * e) + Kd * lastError );
+                    rval = (int) (dval + (k * kSym * e) + Kd * lastError ); //sensor reading are no symetrical, hence constant ksym adjust
+                    lval = (int) (dval - ((k * e) + Kd * lastError));
                     lastError = e;
                 }
                 lMotor.setSpeed(lval);
@@ -86,6 +86,11 @@ public class Avoid extends Thread {
             MultiThreadingSync.setLineFollowerMode();
             sMotor.rotate(90, true);
             while(MultiThreadingSync.getMode() == 1) { Delay.msDelay(100); }
+            //try to get on the line again
+            lMotor.setSpeed(0);
+            rMotor.setSpeed(0);
+            lMotor.forward();
+            rMotor.forward();
         }
 
     }
