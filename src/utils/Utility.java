@@ -9,8 +9,8 @@ import lejos.hardware.port.Port;
 import lejos.hardware.sensor.EV3ColorSensor;
 import lejos.hardware.sensor.EV3UltrasonicSensor;
 import robot.Avoid;
-import robot.FetchSamples;
 import robot.PID;
+import robot.PIDTuner;
 import robot.UltrasonicDetection;
 
 import java.security.InvalidParameterException;
@@ -69,11 +69,10 @@ public final class Utility {
         Avoid.sMotor = sMotor;
         Avoid.lSensor = lSensor;
 
-        FetchSamples.lMotor = lMotor;
-        FetchSamples.rMotor = rMotor;
-        FetchSamples.lSensor = lSensor;
-        FetchSamples.sMotor = sMotor;
-        FetchSamples.sSensor = sSensor;
+        PIDTuner.lMotor = lMotor;
+        PIDTuner.rMotor = rMotor;
+        PIDTuner.lSensor = lSensor;
+
     }
 
     public static void display(String[] str, float[] f){
