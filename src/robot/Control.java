@@ -106,10 +106,8 @@ public class Control {
         while(flag){
             while(MultiThreadingSync.getMode()==2){//TODO break condition
                 sonarSampleProvider.fetchSample(sonarSample,0);
-
-
                 while(lightSample[0] > 0.45){
-                    Utility.display(sonarSample[0]);
+                    Utility.display("Avoiding", sonarSample[0]);
                     sonarSampleProvider.fetchSample(sonarSample,0);
                     e = sonarSample[0];//offset
 
