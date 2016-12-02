@@ -8,10 +8,10 @@ import lejos.hardware.port.MotorPort;
 import lejos.hardware.port.Port;
 import lejos.hardware.sensor.EV3ColorSensor;
 import lejos.hardware.sensor.EV3UltrasonicSensor;
-import robot.Avoid;
-import robot.PID;
+import lejos.robotics.SampleProvider;
+import robot.Control;
 import robot.PIDTuner;
-import robot.UltrasonicDetection;
+import robot.SensorThread;
 
 import java.security.InvalidParameterException;
 
@@ -25,6 +25,64 @@ public final class Utility {
     public static EV3ColorSensor lSensor;
     public static EV3MediumRegulatedMotor sMotor;
     public static EV3UltrasonicSensor sSensor;
+    public static SampleProvider lightSampleProvider;
+    public static float[] lightSample;
+    public static SampleProvider sonarSampleProvider;
+    public static float[] sonarSample;
+
+    public static void setup(){
+        Port port1 = LocalEV3.get().getPort("S1");
+        Port port2 = LocalEV3.get().getPort("S2");
+        rMotor = new EV3LargeRegulatedMotor(MotorPort.A);
+        lMotor = new EV3LargeRegulatedMotor(MotorPort.B);
+        sMotor = new EV3MediumRegulatedMotor(MotorPort.C);
+
+        //----------Setting up Light Sensor-------------------------------------------
+        lSensor = new EV3ColorSensor(port1);
+        lightSampleProvider = lSensor.getMode("Red");
+        lightSample = new float[lightSampleProvider.sampleSize()];
+
+        //----------Setting up Sonar Sensor-------------------------------------------
+        sSensor = new EV3UltrasonicSensor(port2);
+        sonarSampleProvider = sSensor.getMode("Distance");
+        sonarSample = new float[sonarSampleProvider.sampleSize()];
+
+        //----------Setting up motors in other classes ---------------------------------
+        Control.lMotor = lMotor;
+        Control.rMotor = rMotor;
+        Control.sMotor = sMotor;
+
+        Control.lightSample = lightSample;
+        Control.lightSampleProvider = lightSampleProvider;
+        Control.sonarSample = sonarSample;
+        Control.sonarSampleProvider = sonarSampleProvider;
+
+        {
+            SensorThread.lightSample = lightSample;
+            SensorThread.lightSampleProvider = lightSampleProvider;
+            SensorThread.sonarSample = sonarSample;
+            SensorThread.sonarSampleProvider = sonarSampleProvider;
+        }
+        PIDTuner.lMotor = lMotor;
+        PIDTuner.rMotor = rMotor;
+        PIDTuner.lSensor = lSensor;
+
+
+
+    }
+
+    public static void display(String[] str, float[] f){
+        if(str.length == f.length){
+            LCD.clear();
+            for(int i = 0; i < f.length; ++i){
+                //display(str[i] + String.valueOf(f[i]), i+1);
+                LCD.drawString(str[i] + String.valueOf(f[i]),1, i+1);
+                LCD.refresh();
+            }
+        }
+        else
+            throw new InvalidParameterException("String array and float array must have the same size");
+    }
 
     public static void display(String str){
         LCD.clear();
@@ -44,47 +102,5 @@ public final class Utility {
 
     public static void display(String str, float f){
         display(str + String.valueOf(f));
-    }
-
-    public static void setup(){
-        Port port1 = LocalEV3.get().getPort("S1");
-        Port port2 = LocalEV3.get().getPort("S2");
-        rMotor = new EV3LargeRegulatedMotor(MotorPort.A);
-        lMotor = new EV3LargeRegulatedMotor(MotorPort.B);
-        sMotor = new EV3MediumRegulatedMotor(MotorPort.C);
-        lSensor = new EV3ColorSensor(port1);
-        sSensor = new EV3UltrasonicSensor(port2);
-
-        //sets the motors and sensors for the other classes
-
-        PID.lMotor = lMotor;
-        PID.rMotor = rMotor;
-        PID.lSensor = lSensor;
-        UltrasonicDetection.sMotor = sMotor;
-        UltrasonicDetection.sSensor = sSensor;
-
-        Avoid.lMotor = lMotor;
-        Avoid.rMotor = rMotor;
-        Avoid.sSensor = sSensor;
-        Avoid.sMotor = sMotor;
-        Avoid.lSensor = lSensor;
-
-        PIDTuner.lMotor = lMotor;
-        PIDTuner.rMotor = rMotor;
-        PIDTuner.lSensor = lSensor;
-
-    }
-
-    public static void display(String[] str, float[] f){
-        if(str.length == f.length){
-            LCD.clear();
-            for(int i = 0; i < f.length; ++i){
-                //display(str[i] + String.valueOf(f[i]), i+1);
-                LCD.drawString(str[i] + String.valueOf(f[i]),1, i+1);
-                LCD.refresh();
-            }
-        }
-        else
-            throw new InvalidParameterException("String array and float array must have the same size");
     }
 }

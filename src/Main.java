@@ -11,8 +11,8 @@ public class Main {
         //Utility.setup();
         //PIDTuner.start();
 
-        Thread pid = new PID();
-        Thread avoid = new Avoid();
+        /*Thread pid = new PID();
+        Thread avoid = new Avoid();*/
         Utility.setup();
 
         //detect curtains
@@ -23,7 +23,10 @@ public class Main {
         while(sampleSonar[0] < 0.15) {Utility.sSensor.fetchSample(sampleSonar, 0);
             Delay.msDelay(100);} //30cm
         Delay.msDelay(200); //time to lift the curtain completely
-        (new UltrasonicDetection()).start(pid, avoid);
+
+        SensorThread thr = new SensorThread();
+        thr.start();
+        Control.pid();
         //FetchSamples.start();
 
     }

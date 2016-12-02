@@ -63,59 +63,6 @@ public class PID extends Thread{
             rMotor.forward();
             while(MultiThreadingSync.getMode() == 2){ Delay.msDelay(100);}
             Utility.display("PID");
-
-//######################Tuning Buttons##################################################################################
-/*
-            if (Button.getButtons() == Button.ID_UP) {
-                if (index > 0)
-                    --index;
-            }
-            else if (Button.getButtons() == Button.ID_DOWN) {
-                ++index;
-            }
-            else if (Button.getButtons() == Button.ID_RIGHT){
-                if(index%5 == 0)
-                    //the values might need to be modified from inside the array with indexes since the array doesn't update idk why
-                    kSym += 0.05;//0.1
-                else if(index%5 == 1)
-                    k += 1;//10
-                else if(index%5 == 2)
-                    Kd += 1;//10
-                else if(index%5 == 4)
-                    dval += 5;//20
-                else if(index%5 == 3)
-                    Ki +=0.2;//1
-            }
-            else if (Button.getButtons() == Button.ID_LEFT){
-                if(index%5 == 0)
-                    kSym -= 0.05;//0.1
-                else if(index%5 == 1)
-                    k -= 1;//10
-                else if(index%5 == 2)
-                    Kd -= 1;//10
-                else if(index%5 == 4)
-                    dval -= 5;//20
-                else if(index%5 == 3)
-                    Ki -=0.2;//1
-            }
-            else if(Button.getButtons() == Button.ID_ENTER) { //PAUSE
-                Delay.msDelay(500);
-                lMotor.setSpeed(0);
-                rMotor.setSpeed(0);
-                lMotor.forward();
-                rMotor.forward();
-                while (Button.getButtons() != Button.ID_ENTER){
-                    Delay.msDelay(200);
-                }
-            }
-
-            float[] vals = {kSym, k, Kd, Ki, dval};
-
-            String[] str = {"Ksym: ", "Kp: ", "Kd: ", "Ki: ", "def speed: "};
-            str[index%str.length]= '>' + str[index%str.length];
-            utils.Utility.display(str, vals);
-
-            Delay.msDelay(100);*/
         }
     }
 }

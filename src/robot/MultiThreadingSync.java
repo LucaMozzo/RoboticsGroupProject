@@ -3,7 +3,8 @@ package robot;
 /**
  * DON'T EDIT THIS FILE UNLESS YOU KNOW WHAT YOU'RE DOING
  */
-public class MultiThreadingSync {
+public class
+MultiThreadingSync {
     /*
     1 = line follower
     2 = avoid obstacle
@@ -14,7 +15,9 @@ public class MultiThreadingSync {
 
     public static synchronized void setAvoidObstacleMode(){mode = 2;}
 
-   // public static synchronized void setFindLineMode(){mode = 0;}
+    public static synchronized void setFindLineMode(){mode = 3;}
+
+    public static synchronized void exit(){mode = 0;}
 
     public static synchronized int getMode(){return mode;}
 }

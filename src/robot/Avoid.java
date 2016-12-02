@@ -23,16 +23,13 @@ public class Avoid extends Thread {
     public static EV3ColorSensor lSensor;
     public static EV3UltrasonicSensor sSensor;
 
-    /*public Avoid(Thread ultrasonicThread){
-        this.ultrasonicThread = ultrasonicThread;
-    }*/
+
 
     @Override
     public void run(){
         SampleProvider colourSampleProvider = lSensor.getMode("Red");
         float[] sampleLight = new float[colourSampleProvider.sampleSize()];
         float[] sampleSonar = new float[sSensor.sampleSize()];
-
 
         sSensor.fetchSample(sampleSonar,0);
 
@@ -74,6 +71,7 @@ public class Avoid extends Thread {
                     colourSampleProvider.fetchSample(sampleLight,0);
                     sSensor.fetchSample(sampleSonar, 0);
                     e = sampleSonar[0];//offset
+
                     if (e < 0.03 || e > 0.05) { // filtering out  noise, so that robot can go straight
                         e -= 0.04;
                         lastError = e - lastError;
@@ -86,24 +84,11 @@ public class Avoid extends Thread {
                     lMotor.forward();
                     rMotor.forward();
 
-                    /*
-                    float[] vals = {rval, dval, e, sampleSonar[0]};
-                    String[] str = {"rval: ", "lval: ", "error", "sonar" };
-                    utils.Utility.display(str, vals);*/
                 }
                 rMotor.stop();
                 lMotor.stop();
                 sMotor.rotate(90, true);
-                /*
-                MultiThreadingSync.setLineFollowerMode();
-                sMotor.rotate(90, true);
-                while(MultiThreadingSync.getMode() == 1) { Delay.msDelay(100); }
-                //try to get on the line again
-                lMotor.setSpeed(0);
-                rMotor.setSpeed(0);
-                lMotor.forward();
-                rMotor.forward();
-            */
+
 
                 flag = false;
                 break;
