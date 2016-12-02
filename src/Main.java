@@ -11,6 +11,9 @@ import javax.rmi.CORBA.Util;
  */
 public class Main {
     public static void main(String[] args) throws Exception{
+        Utility.setup();
+        PIDTuner.start();
+        /*
         Thread pid = new PID();
         Thread avoid = new Avoid();
         Utility.setup();
@@ -24,5 +27,6 @@ public class Main {
             Delay.msDelay(100);} //30cm
         (new UltrasonicDetection()).start(pid, avoid);
         //FetchSamples.start();
+        */
     }
 }
