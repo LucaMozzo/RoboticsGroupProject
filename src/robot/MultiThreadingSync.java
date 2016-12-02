@@ -14,5 +14,7 @@ public class MultiThreadingSync {
 
     public static synchronized void setAvoidObstacleMode(){mode = 2;}
 
+   // public static synchronized void setFindLineMode(){mode = 0;}
+
     public static synchronized int getMode(){return mode;}
 }

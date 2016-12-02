@@ -86,9 +86,10 @@ public class Avoid extends Thread {
                     lMotor.forward();
                     rMotor.forward();
 
+                    /*
                     float[] vals = {rval, dval, e, sampleSonar[0]};
                     String[] str = {"rval: ", "lval: ", "error", "sonar" };
-                    utils.Utility.display(str, vals);
+                    utils.Utility.display(str, vals);*/
                 }
                 rMotor.stop();
                 lMotor.stop();
@@ -103,8 +104,9 @@ public class Avoid extends Thread {
                 lMotor.forward();
                 rMotor.forward();
             */
-                MultiThreadingSync.setLineFollowerMode();
+
                 flag = false;
+                break;
             }
 
         }
@@ -117,6 +119,8 @@ public class Avoid extends Thread {
         while(sampleLight[0] < 0.60){
             colourSampleProvider.fetchSample(sampleLight, 0);
         }
+        rMotor.stop();
+        lMotor.stop();
         //back to the black line
         Utility.display(new String[]{"2", "val: "}, new float[]{0.0f, sampleLight[0]});
         colourSampleProvider.fetchSample(sampleLight, 0);
@@ -128,10 +132,14 @@ public class Avoid extends Thread {
         while(sampleLight[0] > 0.20){
             colourSampleProvider.fetchSample(sampleLight, 0);
         }
+        rMotor.stop();
+        lMotor.stop();
 
         //black line but other side
         Utility.display(new String[]{"3", "val: "}, new float[]{0.0f, sampleLight[0]});
         colourSampleProvider.fetchSample(sampleLight, 0);
         while(sampleLight[0] < 0.40){colourSampleProvider.fetchSample(sampleLight, 0);}
+
+        MultiThreadingSync.setLineFollowerMode();
     }
 }
