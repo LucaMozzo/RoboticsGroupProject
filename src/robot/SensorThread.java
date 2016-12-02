@@ -2,6 +2,7 @@ package robot;
 
 
 import lejos.robotics.SampleProvider;
+import lejos.utility.Delay;
 import utils.Utility;
 
 /**
@@ -23,17 +24,21 @@ public class SensorThread extends Thread {
                 sonarSampleProvider.fetchSample(sonarSample, 0);
                 Utility.display(sonarSample[0]);
                 if(sonarSample[0]<0.15){
-                    //if(obstacleDetected) { //curtain detected
-                    //    MultiThreadingSync.exit();
-                      //  break;
-                    //}
-                    //else
+                    if(obstacleDetected) { //curtain detected
+                        MultiThreadingSync.exit();
+                      break;
+                    }
+                    else {
                         MultiThreadingSync.setAvoidObstacleMode();
+                        Utility.display("switch");
+                        Delay.msDelay(2000);
+                    }
                 }
             }
             else if(MultiThreadingSync.getMode() == 2){
                 lightSampleProvider.fetchSample(lightSample, 0);
                 if(lightSample[0]<0.45){
+                    obstacleDetected = true;
                     MultiThreadingSync.setFindLineMode();
                 }
             }

@@ -29,7 +29,7 @@ public class Control {
 
 
     public static void pid(){
-        Utility.display("PID Luanched");
+        //Utility.display("PID Luanched");
         int lval = 0;
         int rval = 0;
         int dval = 220; // base motor value
@@ -45,8 +45,9 @@ public class Control {
         float Ki = 4.0f; //integral constant
         int integral = 0;
 
+        boolean flag = true;
         //---------------PID Loop------------------------
-        while (true) {
+        while (flag) {
             lval = dval;
             rval = dval;
 
@@ -66,22 +67,29 @@ public class Control {
             rMotor.setSpeed(rval);
             lMotor.forward();
             rMotor.forward();
+
+
             if (MultiThreadingSync.getMode() == 2 || MultiThreadingSync.getMode() == 4) {
-                Utility.display(MultiThreadingSync.getMode());
-                break;
+                Utility.display("EXITING NOW");
+                flag = false;
+                rMotor.stop();
+                lMotor.stop();
             }
         }
-        if(MultiThreadingSync.getMode() == 2)
+
+        Utility.display("@@@@@EXITING NOW@@@@");
+        if(MultiThreadingSync.getMode() == 2) {
             avoid();
+        }
     }
 
-    public static void avoid(){
 
+    public static void avoid(){
         Utility.display("Avoid Launched");
         //----------Setting Up for circum navigation of obsticle ---------
         sMotor.rotate(-90, true);
-        rMotor.setSpeed(40);
-        lMotor.setSpeed(260);
+        rMotor.setSpeed(20);
+        lMotor.setSpeed(300);
         lMotor.forward();
         rMotor.forward();
         Delay.msDelay(850);
@@ -109,33 +117,27 @@ public class Control {
         while(flag){
             while(MultiThreadingSync.getMode()==2){//TODO break condition
                 sonarSampleProvider.fetchSample(sonarSample,0);
-                lightSampleProvider.fetchSample(lightSample, 0);
 
-                while(lightSample[0] > 0.45){
-                    Utility.display("Avoiding", sonarSample[0]);
-                    sonarSampleProvider.fetchSample(sonarSample,0);
-                    e = sonarSample[0];//offset
+                Utility.display("Avoiding", sonarSample[0]);
+                e = sonarSample[0];//offset
 
-                    if (e < 0.03 || e > 0.05) { // filtering out  noise, so that robot can go straight
-                        e -= 0.04;
-                        lastError = e - lastError;
-                        rval = (int) (dval + (kp * kSym * e) + Kd * lastError); //sensor reading are no symetrical, hence constant ksym adjust
-                        lval = (int) (dval - ((kp * e) + Kd * lastError));
-                        lastError = e;
-                    }
-                    lMotor.setSpeed(lval);
-                    rMotor.setSpeed(rval);
-                    lMotor.forward();
-                    rMotor.forward();
+                if (e < 0.03 || e > 0.05) { // filtering out  noise, so that robot can go straight
+                    e -= 0.04;
+                    lastError = e - lastError;
+                    rval = (int) (dval + (kp * kSym * e) + Kd * lastError); //sensor reading are no symetrical, hence constant ksym adjust
+                    lval = (int) (dval - ((kp * e) + Kd * lastError));
+                    lastError = e;
                 }
-
-                rMotor.stop();
-                lMotor.stop();
-                sMotor.rotate(90);
-                flag = false;
-                break;
+                lMotor.setSpeed(lval);
+                rMotor.setSpeed(rval);
+                lMotor.forward();
+                rMotor.forward();
             }
-
+            rMotor.stop();
+            lMotor.stop();
+            sMotor.rotate(90);
+            flag = false;
+            break;
         }
         //------------Getting Onto Line----------------
         rMotor.setSpeed(100);
@@ -148,12 +150,12 @@ public class Control {
             lightSampleProvider.fetchSample(lightSample, 0);
             Utility.display("1" , lightSample[0]);
         }
-
+        Delay.msDelay(70);
         rMotor.stop();
         lMotor.stop();
 
-        rMotor.setSpeed(20);
-        lMotor.setSpeed(50);
+        rMotor.setSpeed(50);
+        lMotor.setSpeed(100);
         rMotor.backward();
         lMotor.forward();
 
@@ -163,17 +165,14 @@ public class Control {
             Utility.display("2" , lightSample[0]);
         }
 
-        rMotor.stop();
-        lMotor.stop();
-
         //---------------------Once on the line--------------------------------------------------
 
-        lightSampleProvider.fetchSample(lightSample, 0);
         while(lightSample[0] < 0.40){
             lightSampleProvider.fetchSample(lightSample, 0);
             Utility.display("3" , lightSample[0]);
         }
 
+        MultiThreadingSync.setLineFollowerMode();
         pid();
     }
 }
