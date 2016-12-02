@@ -40,14 +40,7 @@ public class Avoid extends Thread {
             //utils.Utility.display(new String[]{"Error"}, new float[]{sampleSonar[0]});
         }*/
 
-        rMotor.stop();
-        lMotor.stop();
 
-        sMotor.rotate(-90, true);
-        rMotor.rotate(-155, true);
-        lMotor.rotate(155, true);
-        Delay.msDelay(1000);
-        sSensor.fetchSample(sampleSonar, 0);
 
         //PD VALUES
         int lval = 0;
@@ -60,8 +53,16 @@ public class Avoid extends Thread {
         float k = 500; //constant of proportionality
         float kSym = 1.3f;
         sSensor.fetchSample(sampleSonar, 0);
-        Delay.msDelay(1000);
+        Delay.msDelay(5000);
         while(true){
+            rMotor.stop();
+            lMotor.stop();
+
+            sMotor.rotate(-90, true);
+            rMotor.rotate(-155, true);
+            lMotor.rotate(155, true);
+            Delay.msDelay(5000);
+            sSensor.fetchSample(sampleSonar, 0);
 
             while(sampleLight[0] > 0.45){
                 lSensor.fetchSample(sampleLight,0);
