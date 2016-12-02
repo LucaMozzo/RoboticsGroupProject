@@ -56,12 +56,13 @@ public class PID extends Thread{
                 rMotor.forward();
             }
 
-            Utility.display("PID terminated");
+
             lMotor.setSpeed(0);
             rMotor.setSpeed(0);
             lMotor.forward();
             rMotor.forward();
             while(MultiThreadingSync.getMode() == 2){ Delay.msDelay(100);}
+            Utility.display("PID");
 
 //######################Tuning Buttons##################################################################################
 /*

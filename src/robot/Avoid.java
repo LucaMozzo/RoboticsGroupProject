@@ -4,7 +4,11 @@ import lejos.hardware.motor.EV3LargeRegulatedMotor;
 import lejos.hardware.motor.EV3MediumRegulatedMotor;
 import lejos.hardware.sensor.EV3ColorSensor;
 import lejos.hardware.sensor.EV3UltrasonicSensor;
+import lejos.robotics.SampleProvider;
 import lejos.utility.Delay;
+import utils.Utility;
+
+import javax.rmi.CORBA.Util;
 
 /**
  * Created by lucam on 23/11/2016.
@@ -25,22 +29,12 @@ public class Avoid extends Thread {
 
     @Override
     public void run(){
-        float[] sampleLight = new float[lSensor.sampleSize()];
+        SampleProvider colourSampleProvider = lSensor.getMode("Red");
+        float[] sampleLight = new float[colourSampleProvider.sampleSize()];
         float[] sampleSonar = new float[sSensor.sampleSize()];
 
 
         sSensor.fetchSample(sampleSonar,0);
-
-        /*while(sampleSonar[0] >0.05){
-            sSensor.fetchSample(sampleSonar,0);
-            rMotor.setSpeed(300);
-            lMotor.setSpeed(300);
-            lMotor.forward();
-            rMotor.forward();
-            //utils.Utility.display(new String[]{"Error"}, new float[]{sampleSonar[0]});
-        }*/
-
-
 
         //PD VALUES
         int lval = 0;
@@ -53,46 +47,91 @@ public class Avoid extends Thread {
         float k = 500; //constant of proportionality
         float kSym = 1.3f;
         sSensor.fetchSample(sampleSonar, 0);
-        Delay.msDelay(5000);
-        while(true){
-            rMotor.stop();
-            lMotor.stop();
+        Delay.msDelay(1000);
+        boolean flag = true;
+        while(flag){
 
-            sMotor.rotate(-90, true);
-            rMotor.rotate(-155, true);
-            lMotor.rotate(155, true);
-            Delay.msDelay(5000);
-            sSensor.fetchSample(sampleSonar, 0);
+            while(MultiThreadingSync.getMode() == 2){
+                rMotor.stop();
+                lMotor.stop();
 
-            while(sampleLight[0] > 0.45){
-                lSensor.fetchSample(sampleLight,0);
-                sSensor.fetchSample(sampleSonar, 0);
-                e = sampleSonar[0];//offset
-                if (e < 0.03 || e > 0.05) { // filtering out  noise, so that robot can go straight
-                    e -= 0.04;
-                    lastError = e - lastError;
-                    rval = (int) (dval + (k * kSym * e) + Kd * lastError ); //sensor reading are no symetrical, hence constant ksym adjust
-                    lval = (int) (dval - ((k * e) + Kd * lastError));
-                    lastError = e;
-                }
-                lMotor.setSpeed(lval);
-                rMotor.setSpeed(rval);
+                sMotor.rotate(-90, true);
+                rMotor.setSpeed(40);
+                lMotor.setSpeed(260);
                 lMotor.forward();
                 rMotor.forward();
+                Delay.msDelay(850);
 
-                float[] vals = {rval, dval, e, sampleSonar[0]};
-                String[] str = {"rval: ", "lval: ", "error", "sonar" };
-                utils.Utility.display(str, vals);
+                rMotor.stop();
+                lMotor.stop();
+
+
+                colourSampleProvider.fetchSample(sampleLight,0);
+                Utility.display(sampleLight[0]);
+                //Delay.msDelay(5000);
+
+                while(sampleLight[0] > 0.45){
+                    colourSampleProvider.fetchSample(sampleLight,0);
+                    sSensor.fetchSample(sampleSonar, 0);
+                    e = sampleSonar[0];//offset
+                    if (e < 0.03 || e > 0.05) { // filtering out  noise, so that robot can go straight
+                        e -= 0.04;
+                        lastError = e - lastError;
+                        rval = (int) (dval + (k * kSym * e) + Kd * lastError ); //sensor reading are no symetrical, hence constant ksym adjust
+                        lval = (int) (dval - ((k * e) + Kd * lastError));
+                        lastError = e;
+                    }
+                    lMotor.setSpeed(lval);
+                    rMotor.setSpeed(rval);
+                    lMotor.forward();
+                    rMotor.forward();
+
+                    float[] vals = {rval, dval, e, sampleSonar[0]};
+                    String[] str = {"rval: ", "lval: ", "error", "sonar" };
+                    utils.Utility.display(str, vals);
+                }
+                rMotor.stop();
+                lMotor.stop();
+                sMotor.rotate(90, true);
+                /*
+                MultiThreadingSync.setLineFollowerMode();
+                sMotor.rotate(90, true);
+                while(MultiThreadingSync.getMode() == 1) { Delay.msDelay(100); }
+                //try to get on the line again
+                lMotor.setSpeed(0);
+                rMotor.setSpeed(0);
+                lMotor.forward();
+                rMotor.forward();
+            */
+                MultiThreadingSync.setLineFollowerMode();
+                flag = false;
             }
-            MultiThreadingSync.setLineFollowerMode();
-            sMotor.rotate(90, true);
-            while(MultiThreadingSync.getMode() == 1) { Delay.msDelay(100); }
-            //try to get on the line again
-            lMotor.setSpeed(0);
-            rMotor.setSpeed(0);
-            lMotor.forward();
-            rMotor.forward();
+
+        }
+        //get back to the line
+        Utility.display(new String[]{"1", "val: "}, new float[]{0.0f, sampleLight[0]});
+        rMotor.setSpeed(50);
+        lMotor.setSpeed(50);
+        rMotor.forward();
+        lMotor.forward();
+        while(sampleLight[0] < 0.60){
+            colourSampleProvider.fetchSample(sampleLight, 0);
+        }
+        //back to the black line
+        Utility.display(new String[]{"2", "val: "}, new float[]{0.0f, sampleLight[0]});
+        colourSampleProvider.fetchSample(sampleLight, 0);
+        rMotor.setSpeed(20);
+        lMotor.setSpeed(50);
+        rMotor.backward();
+        lMotor.forward();
+
+        while(sampleLight[0] > 0.20){
+            colourSampleProvider.fetchSample(sampleLight, 0);
         }
 
+        //black line but other side
+        Utility.display(new String[]{"3", "val: "}, new float[]{0.0f, sampleLight[0]});
+        colourSampleProvider.fetchSample(sampleLight, 0);
+        while(sampleLight[0] < 0.40){colourSampleProvider.fetchSample(sampleLight, 0);}
     }
 }

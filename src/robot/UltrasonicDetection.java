@@ -36,7 +36,6 @@ public final class UltrasonicDetection {
             while (MultiThreadingSync.getMode() == 1) {
                 sSensor.fetchSample(sampleSonar, 0);
                 if (sampleSonar[0] < 0.1) {
-                    Utility.display("avoid obstacle");
                     MultiThreadingSync.setAvoidObstacleMode();
                 }
             }
