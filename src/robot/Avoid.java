@@ -95,36 +95,40 @@ public class Avoid extends Thread {
             }
 
         }
-        //get back to the line
-        Utility.display(new String[]{"1", "val: "}, new float[]{0.0f, sampleLight[0]});
-        rMotor.setSpeed(50);
-        lMotor.setSpeed(50);
-        rMotor.forward();
-        lMotor.forward();
-        while(sampleLight[0] < 0.60){
+        if(MultiThreadingSync.getMode() == 2) {
+            //get back to the line
+            Utility.display(new String[]{"1", "val: "}, new float[]{0.0f, sampleLight[0]});
+            rMotor.setSpeed(50);
+            lMotor.setSpeed(50);
+            rMotor.forward();
+            lMotor.forward();
+            while (sampleLight[0] < 0.60) {
+                colourSampleProvider.fetchSample(sampleLight, 0);
+            }
+            rMotor.stop();
+            lMotor.stop();
+            //back to the black line
+            Utility.display(new String[]{"2", "val: "}, new float[]{0.0f, sampleLight[0]});
             colourSampleProvider.fetchSample(sampleLight, 0);
-        }
-        rMotor.stop();
-        lMotor.stop();
-        //back to the black line
-        Utility.display(new String[]{"2", "val: "}, new float[]{0.0f, sampleLight[0]});
-        colourSampleProvider.fetchSample(sampleLight, 0);
-        rMotor.setSpeed(20);
-        lMotor.setSpeed(50);
-        rMotor.backward();
-        lMotor.forward();
+            rMotor.setSpeed(20);
+            lMotor.setSpeed(50);
+            rMotor.backward();
+            lMotor.forward();
 
-        while(sampleLight[0] > 0.20){
+            while (sampleLight[0] > 0.20) {
+                colourSampleProvider.fetchSample(sampleLight, 0);
+            }
+            rMotor.stop();
+            lMotor.stop();
+
+            //black line but other side
+            Utility.display(new String[]{"3", "val: "}, new float[]{0.0f, sampleLight[0]});
             colourSampleProvider.fetchSample(sampleLight, 0);
+            while (sampleLight[0] < 0.40) {
+                colourSampleProvider.fetchSample(sampleLight, 0);
+            }
+
+            MultiThreadingSync.setLineFollowerMode();
         }
-        rMotor.stop();
-        lMotor.stop();
-
-        //black line but other side
-        Utility.display(new String[]{"3", "val: "}, new float[]{0.0f, sampleLight[0]});
-        colourSampleProvider.fetchSample(sampleLight, 0);
-        while(sampleLight[0] < 0.40){colourSampleProvider.fetchSample(sampleLight, 0);}
-
-        MultiThreadingSync.setLineFollowerMode();
     }
 }

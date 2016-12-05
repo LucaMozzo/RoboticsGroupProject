@@ -32,17 +32,17 @@ public class Control {
         //Utility.display("PID Luanched");
         int lval = 0;
         int rval = 0;
-        int dval = 220; // base motor value
-        float k = 260; //constant of proportionality
+        int dval = 250; // base motor value
+        float k = 310; //constant of proportionality
         float e; // error term and sensor recorded value (dual use
 
         //---------------PID Parameters------------------
         float kSym = 1.25f;
         int index = 0; //menu index
-        int Kd = 250; // deferential constant
+        int Kd = 280; // deferential constant
         float lastError = 0;
 
-        float Ki = 4.0f; //integral constant
+        float Ki = 7.0f; //integral constant
         int integral = 0;
 
         boolean flag = true;
@@ -68,16 +68,19 @@ public class Control {
             lMotor.forward();
             rMotor.forward();
 
+            sonarSampleProvider.fetchSample(sonarSample, 0);
+            if(sonarSample[0] < 0.15 && SensorThread.obstacleDetected)
+                MultiThreadingSync.exit();
+
 
             if (MultiThreadingSync.getMode() == 2 || MultiThreadingSync.getMode() == 4) {
-                Utility.display("EXITING NOW");
                 flag = false;
                 rMotor.stop();
                 lMotor.stop();
             }
+
         }
 
-        Utility.display("@@@@@EXITING NOW@@@@");
         if(MultiThreadingSync.getMode() == 2) {
             avoid();
         }
@@ -87,18 +90,27 @@ public class Control {
     public static void avoid(){
         Utility.display("Avoid Launched");
         //----------Setting Up for circum navigation of obsticle ---------
+        sonarSampleProvider.fetchSample(sonarSample, 0);
+        float lastSample = sonarSample[0];
         sMotor.rotate(-90, true);
-        rMotor.setSpeed(20);
+        /*rMotor.setSpeed(10);
         lMotor.setSpeed(300);
         lMotor.forward();
         rMotor.forward();
-        Delay.msDelay(850);
+        Delay.msDelay(900);*/
+
+        rMotor.setSpeed(150);
+        lMotor.setSpeed(150);
+        lMotor.forward();
+        rMotor.backward();
+        Delay.msDelay(900);
+        while(sonarSample[0] < lastSample){sonarSampleProvider.fetchSample(sonarSample, 0);}
 
         rMotor.stop();
         lMotor.stop();
 
         //-----------PD Parameters-----------------------
-        int dval = 200; // base motor value
+        int dval = 300; // base motor value
         int lval = dval;
         int rval = dval;
 
@@ -107,9 +119,9 @@ public class Control {
         float kSym = 1.3f;
         boolean flag = true; // for breaking out of loops
 
-        float kp = 500; //constant of proportionality
+        float kp = 300; //constant of proportionality
 
-        int Kd = 300; // deferential constant
+        int Kd = 500; // deferential constant
         float lastError = 0; //
 
         sonarSampleProvider.fetchSample(sonarSample, 0);
@@ -119,7 +131,7 @@ public class Control {
                 sonarSampleProvider.fetchSample(sonarSample,0);
 
                 Utility.display("Avoiding", sonarSample[0]);
-                e = sonarSample[0];//offset
+                e = sonarSample[0] * 2;//offset
 
                 if (e < 0.03 || e > 0.05) { // filtering out  noise, so that robot can go straight
                     e -= 0.04;
@@ -150,12 +162,12 @@ public class Control {
             lightSampleProvider.fetchSample(lightSample, 0);
             Utility.display("1" , lightSample[0]);
         }
-        Delay.msDelay(70);
-        rMotor.stop();
-        lMotor.stop();
+        Delay.msDelay(50);//70
+        /*rMotor.stop();
+        lMotor.stop();*/
 
-        rMotor.setSpeed(50);
-        lMotor.setSpeed(100);
+        rMotor.setSpeed(100);//100
+        lMotor.setSpeed(200);
         rMotor.backward();
         lMotor.forward();
 

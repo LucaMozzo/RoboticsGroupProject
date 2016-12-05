@@ -23,14 +23,13 @@ public class SensorThread extends Thread {
             if(MultiThreadingSync.getMode() == 1){
                 sonarSampleProvider.fetchSample(sonarSample, 0);
                 Utility.display(sonarSample[0]);
-                if(sonarSample[0]<0.15){
+                if(sonarSample[0]<0.10){
                     if(obstacleDetected) { //curtain detected
                         MultiThreadingSync.exit();
                       break;
                     }
                     else {
                         MultiThreadingSync.setAvoidObstacleMode();
-                        Utility.display("switch");
                         Delay.msDelay(2000);
                     }
                 }
