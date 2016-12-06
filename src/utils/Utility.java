@@ -12,6 +12,7 @@ import lejos.robotics.SampleProvider;
 import robot.Control;
 import robot.PIDTuner;
 import robot.SensorThread;
+import robot.SonarScanning;
 
 import java.security.InvalidParameterException;
 
@@ -57,15 +58,24 @@ public final class Utility {
         Control.sonarSample = sonarSample;
         Control.sonarSampleProvider = sonarSampleProvider;
 
-        {
-            SensorThread.lightSample = lightSample;
-            SensorThread.lightSampleProvider = lightSampleProvider;
-            SensorThread.sonarSample = sonarSample;
-            SensorThread.sonarSampleProvider = sonarSampleProvider;
-        }
+
+        SensorThread.lightSample = lightSample;
+        SensorThread.lightSampleProvider = lightSampleProvider;
+        SensorThread.sonarSample = sonarSample;
+        SensorThread.sonarSampleProvider = sonarSampleProvider;
+
         PIDTuner.lMotor = lMotor;
         PIDTuner.rMotor = rMotor;
         PIDTuner.lSensor = lSensor;
+
+        SonarScanning.lMotor = lMotor;
+        SonarScanning.rMotor = rMotor;
+        SonarScanning.sMotor = sMotor;
+
+        SonarScanning.lightSample = lightSample;
+        SonarScanning.lightSampleProvider = lightSampleProvider;
+        SonarScanning.sonarSample = sonarSample;
+        SonarScanning.sonarSampleProvider = sonarSampleProvider;
 
 
 
@@ -103,4 +113,15 @@ public final class Utility {
     public static void display(String str, float f){
         display(str + String.valueOf(f));
     }
+
+    public static void rotate(double angle){//radians cus we ain't plebs
+        rMotor.rotate((int) (2.16*angle), true);
+        lMotor.rotate((int)(-2.16*angle));
+    }
+
+    public static void encoderMedium(){
+        display(sMotor.getTachoCount());
+    }
+
+
 }
