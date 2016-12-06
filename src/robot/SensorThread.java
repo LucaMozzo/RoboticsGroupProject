@@ -35,7 +35,7 @@ public class SensorThread extends Thread {
                         Delay.msDelay(2000);
                     }
                 }*/
-                boolean turn = false;
+                boolean turn = false; //never used?
                 float distance = 0.15f;
                 MultiThreadingSync.detectedDistance = distance;
                 sonarSampleProvider.fetchSample(sonarSample, 0);
