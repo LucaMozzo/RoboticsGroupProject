@@ -39,22 +39,24 @@ public class SensorThread extends Thread {
                 float distance = 0.15f;
                 MultiThreadingSync.detectedDistance = distance;
                 sonarSampleProvider.fetchSample(sonarSample, 0);
-                Utility.sMotor.setSpeed(200);
+                Utility.sMotor.setSpeed(300);
                 //Utility.sMotor.setAcceleration(5000);
                 scanning:
                 while (sonarSample[0] > distance) {
                     Utility.sMotor.forward();
-                    while (Utility.sMotor.getTachoCount() < 90) {
+                    while (Utility.sMotor.getTachoCount() < 45) {
                         sonarSampleProvider.fetchSample(sonarSample, 0);
                         if (sonarSample[0] < distance) {
+                            Utility.sMotor.stop();
                             MultiThreadingSync.detectedDistance = sonarSample[0];
                             break scanning;
                         }
                     }
                     Utility.sMotor.backward();
-                    while (Utility.sMotor.getTachoCount() > -90) {
+                    while (Utility.sMotor.getTachoCount() > -45) {
                         sonarSampleProvider.fetchSample(sonarSample, 0);
                         if (sonarSample[0] < distance) {
+                            Utility.sMotor.stop();
                             MultiThreadingSync.detectedDistance = sonarSample[0];
                             break scanning;
                         }
@@ -65,7 +67,7 @@ public class SensorThread extends Thread {
 
                 MultiThreadingSync.setAvoidObstacleMode();
 
-                Delay.msDelay(2000);
+                Delay.msDelay(3000);
             }
             else if(MultiThreadingSync.getMode() == 2){
                 lightSampleProvider.fetchSample(lightSample, 0);

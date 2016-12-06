@@ -98,12 +98,12 @@ public class Control {
         Utility.sMotor.stop();
         lMotor.stop();
         rMotor.stop();
-        rMotor.setSpeed(100);
-        lMotor.setSpeed(100);
+        rMotor.setSpeed(50);
+        lMotor.setSpeed(50);
         lMotor.forward();
         rMotor.backward();
         sonarSampleProvider.fetchSample(sonarSample, 0);
-        while(sonarSample[0] > MultiThreadingSync.detectedDistance + 0.05){
+        while(sonarSample[0] > MultiThreadingSync.detectedDistance + 0.01){
             sonarSampleProvider.fetchSample(sonarSample, 0);
         }
         Delay.msDelay(100);
