@@ -5,6 +5,8 @@ import lejos.robotics.SampleProvider;
 import lejos.utility.Delay;
 import utils.Utility;
 
+import javax.rmi.CORBA.Util;
+
 /**
  * Created by Artur on 02-Dec-16.
  */
@@ -21,7 +23,7 @@ public class SensorThread extends Thread {
     public void run(){
         while(true){
             if(MultiThreadingSync.getMode() == 1){
-                sonarSampleProvider.fetchSample(sonarSample, 0);
+                /*sonarSampleProvider.fetchSample(sonarSample, 0);
                 Utility.display(sonarSample[0]);
                 if(sonarSample[0]<0.10){
                     if(obstacleDetected) { //curtain detected
@@ -32,7 +34,38 @@ public class SensorThread extends Thread {
                         MultiThreadingSync.setAvoidObstacleMode();
                         Delay.msDelay(2000);
                     }
+                }*/
+                boolean turn = false;
+                float distance = 0.15f;
+                MultiThreadingSync.detectedDistance = distance;
+                sonarSampleProvider.fetchSample(sonarSample, 0);
+                Utility.sMotor.setSpeed(200);
+                //Utility.sMotor.setAcceleration(5000);
+                scanning:
+                while (sonarSample[0] > distance) {
+                    Utility.sMotor.forward();
+                    while (Utility.sMotor.getTachoCount() < 90) {
+                        sonarSampleProvider.fetchSample(sonarSample, 0);
+                        if (sonarSample[0] < distance) {
+                            MultiThreadingSync.detectedDistance = sonarSample[0];
+                            break scanning;
+                        }
+                    }
+                    Utility.sMotor.backward();
+                    while (Utility.sMotor.getTachoCount() > -90) {
+                        sonarSampleProvider.fetchSample(sonarSample, 0);
+                        if (sonarSample[0] < distance) {
+                            MultiThreadingSync.detectedDistance = sonarSample[0];
+                            break scanning;
+                        }
+                    }
+                    sonarSampleProvider.fetchSample(sonarSample, 0);
                 }
+
+
+                MultiThreadingSync.setAvoidObstacleMode();
+
+                Delay.msDelay(2000);
             }
             else if(MultiThreadingSync.getMode() == 2){
                 lightSampleProvider.fetchSample(lightSample, 0);

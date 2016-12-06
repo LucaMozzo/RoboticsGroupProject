@@ -90,7 +90,29 @@ public class Control {
     public static void avoid(){
         Utility.display("Avoid Launched");
         //----------Setting Up for circum navigation of obsticle ---------
+        Utility.sMotor.setSpeed(100);
+        Utility.sMotor.backward();
+        while (Utility.sMotor.getTachoCount() > -90) {
+            Delay.msDelay(10);
+        }
+        Utility.sMotor.stop();
+        Utility.lMotor.stop();
+        Utility.rMotor.stop();
+        lMotor.stop();
+        rMotor.stop();
+        rMotor.setSpeed(100);
+        lMotor.setSpeed(100);
+        lMotor.forward();
+        rMotor.backward();
         sonarSampleProvider.fetchSample(sonarSample, 0);
+        while(sonarSample[0] > MultiThreadingSync.detectedDistance - 0.02){
+            sonarSampleProvider.fetchSample(sonarSample, 0);
+        }
+        Delay.msDelay(100);
+        lMotor.stop();
+        rMotor.stop();
+        Delay.msDelay(1000);
+        /*sonarSampleProvider.fetchSample(sonarSample, 0);
         float lastSample = sonarSample[0];
         sMotor.rotate(-90, true);
         /*rMotor.setSpeed(10);
@@ -99,7 +121,7 @@ public class Control {
         rMotor.forward();
         Delay.msDelay(900);*/
 
-        rMotor.setSpeed(150);
+        /*rMotor.setSpeed(150);
         lMotor.setSpeed(150);
         lMotor.forward();
         rMotor.backward();
@@ -107,7 +129,8 @@ public class Control {
         while(sonarSample[0] < lastSample){sonarSampleProvider.fetchSample(sonarSample, 0);}
 
         rMotor.stop();
-        lMotor.stop();
+        lMotor.stop();*/
+
 
         //-----------PD Parameters-----------------------
         int dval = 300; // base motor value
