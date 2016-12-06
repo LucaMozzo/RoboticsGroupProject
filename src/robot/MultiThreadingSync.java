@@ -10,6 +10,7 @@ MultiThreadingSync {
     2 = avoid obstacle
      */
     public static int mode = 1;
+    public static float detectedDestance = 0;
 
     public static synchronized void setLineFollowerMode(){mode = 1;}
 

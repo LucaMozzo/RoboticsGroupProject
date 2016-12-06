@@ -23,7 +23,6 @@ public class SonarScanning extends Thread {
     public static float[] lightSample;
 
     public void run(){
-
         boolean turn = false;
         float distance = 0.15f;
         float detectedDestance = distance;
@@ -34,13 +33,17 @@ public class SonarScanning extends Thread {
             while(sonarSample[0]>distance){
                 sMotor.forward();
                 while(sMotor.getTachoCount()<90){
+
                     sonarSampleProvider.fetchSample(sonarSample, 0);
                     if(sonarSample[0] <distance)break scanning;
                 }
                 sMotor.backward();
                 while(sMotor.getTachoCount()>-90){
                     sonarSampleProvider.fetchSample(sonarSample, 0);
-                    if(sonarSample[0] <distance)break scanning;
+                    if(sonarSample[0] <distance){
+                        MultiThreadingSync.detectedDestance = sonarSample[0];
+                        break scanning;
+                    }
                 }
                 sonarSampleProvider.fetchSample(sonarSample, 0);
             }

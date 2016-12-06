@@ -18,7 +18,7 @@ public class Main {
         Utility.setup();
 
         //detect curtains
-        /*float[] sampleSonar = new float[Utility.sSensor.sampleSize()];
+        float[] sampleSonar = new float[Utility.sSensor.sampleSize()];
         Utility.sSensor.fetchSample(sampleSonar, 0);
         while(sampleSonar[0] > 0.15) {Utility.sSensor.fetchSample(sampleSonar, 0);
             Delay.msDelay(100);}
@@ -29,9 +29,9 @@ public class Main {
         SensorThread thr = new SensorThread();
         thr.start();
         Control.pid();
-        //FetchSamples.start();*/
 
-        Thread sonarScanning = new SonarScanning();
-        sonarScanning.start();
+
+        /*Thread sonarScanning = new SonarScanning();
+        sonarScanning.start();*/
     }
 }
