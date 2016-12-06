@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="05a5b637-bfca-4184-9784-325c83e838dc" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RoboticsGroupProject.jar" afterPath="$PROJECT_DIR$/RoboticsGroupProject.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/RoboticsGroupProject_jar/RoboticsGroupProject.jar" afterPath="$PROJECT_DIR$/out/artifacts/RoboticsGroupProject_jar/RoboticsGroupProject.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/robot/SonarScanning.java" afterPath="$PROJECT_DIR$/src/robot/SonarScanning.java" />
     </list>
     <ignored path="RoboticsGroupProject.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -817,7 +815,7 @@
       <workItem from="1480673519369" duration="1100000" />
       <workItem from="1480690051105" duration="18624000" />
       <workItem from="1480961594653" duration="3117000" />
-      <workItem from="1481017710068" duration="882000" />
+      <workItem from="1481017710068" duration="904000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1475661148512</created>
@@ -1035,11 +1033,17 @@
       <option name="project" value="LOCAL" />
       <updated>1480961622073</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="Scanning optimised&#10;&#10;">
+      <created>1481019491478</created>
+      <option name="number" value="00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1481019491478</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="106720000" />
+    <option name="totallyTimeSpent" value="106742000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1122,7 +1126,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Added JAR compilation and test file" />
     <MESSAGE value="added readme" />
     <MESSAGE value="added jar" />
     <MESSAGE value="updated  jar" />
@@ -1147,7 +1150,8 @@
     <MESSAGE value="working on avoid obstacle" />
     <MESSAGE value="changes" />
     <MESSAGE value="Implementing scanning&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implementing scanning&#10;" />
+    <MESSAGE value="Scanning optimised&#10;&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Scanning optimised&#10;&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
