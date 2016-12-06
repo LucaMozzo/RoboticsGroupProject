@@ -23,23 +23,11 @@ public class SensorThread extends Thread {
     public void run(){
         while(true){
             if(MultiThreadingSync.getMode() == 1){
-                /*sonarSampleProvider.fetchSample(sonarSample, 0);
-                Utility.display(sonarSample[0]);
-                if(sonarSample[0]<0.10){
-                    if(obstacleDetected) { //curtain detected
-                        MultiThreadingSync.exit();
-                      break;
-                    }
-                    else {
-                        MultiThreadingSync.setAvoidObstacleMode();
-                        Delay.msDelay(2000);
-                    }
-                }*/
                 boolean turn = false; //never used?
                 float distance = 0.15f;
                 MultiThreadingSync.detectedDistance = distance;
                 sonarSampleProvider.fetchSample(sonarSample, 0);
-                Utility.sMotor.setSpeed(300);
+                Utility.sMotor.setSpeed(200);
                 //Utility.sMotor.setAcceleration(5000);
                 scanning:
                 while (sonarSample[0] > distance) {
@@ -69,7 +57,7 @@ public class SensorThread extends Thread {
 
                 MultiThreadingSync.setAvoidObstacleMode();
 
-                Delay.msDelay(5000);
+                Delay.msDelay(8000);
             }
             else if(MultiThreadingSync.getMode() == 2){
                 lightSampleProvider.fetchSample(lightSample, 0);

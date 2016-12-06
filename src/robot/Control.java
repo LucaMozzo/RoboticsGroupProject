@@ -29,16 +29,14 @@ public class Control {
 
 
     public static void pid(){
-        //Utility.display("PID Luanched");
-        int lval = 0;
-        int rval = 0;
+        int lval;
+        int rval;
         int dval = 250; // base motor value
         float k = 310; //constant of proportionality
         float e; // error term and sensor recorded value (dual use
 
         //---------------PID Parameters------------------
         float kSym = 1.25f;
-        int index = 0; //menu index
         int Kd = 280; // deferential constant
         float lastError = 0;
 
@@ -84,6 +82,10 @@ public class Control {
         if(MultiThreadingSync.getMode() == 2) {
             avoid();
         }
+
+        while(true){
+            Utility.display("DONE");
+        }
     }
 
 
@@ -97,8 +99,8 @@ public class Control {
 
         rMotor.setSpeed(70);
         lMotor.setSpeed(70);
-        int r = (int) ((198+MultiThreadingSync.angle)*1.1);
-        int l = (int) ((198+ MultiThreadingSync.angle)*1.1);
+        int r = (int) ((198+MultiThreadingSync.angle)*0.95);
+        int l = (int) ((198+ MultiThreadingSync.angle)*0.95);
         lMotor.rotate( (l), true);
         rMotor.rotate( -r);
 
