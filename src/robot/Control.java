@@ -88,49 +88,19 @@ public class Control {
 
 
     public static void avoid(){
-        Utility.display("Avoid Launched");
         //----------Setting Up for circum navigation of obsticle ---------
-        Utility.sMotor.setSpeed(100);
-        Utility.sMotor.backward();
-        while (Utility.sMotor.getTachoCount() > -90) {
-            Delay.msDelay(10);
-        }
-        Utility.sMotor.stop();
-        lMotor.stop();
+        sMotor.stop();
         rMotor.stop();
+        lMotor.stop();
+        sMotor.rotateTo(-90);
+        Utility.display(MultiThreadingSync.angle);
 
         rMotor.setSpeed(70);
         lMotor.setSpeed(70);
-        lMotor.forward();
-        rMotor.backward();
-        sonarSampleProvider.fetchSample(sonarSample, 0);
-        float offset = 0.01f;
-        //while(sonarSample[0] < MultiThreadingSync.detectedDistance) {sonarSampleProvider.fetchSample(sonarSample, 0);}
-        while(sonarSample[0] > MultiThreadingSync.detectedDistance - offset){
-            sonarSampleProvider.fetchSample(sonarSample, 0);
-        }
-        Delay.msDelay(200);
-        lMotor.stop();
-        rMotor.stop();
-        Delay.msDelay(1000);
-        /*sonarSampleProvider.fetchSample(sonarSample, 0);
-        float lastSample = sonarSample[0];
-        sMotor.rotate(-90, true);
-        /*rMotor.setSpeed(10);
-        lMotor.setSpeed(300);
-        lMotor.forward();
-        rMotor.forward();
-        Delay.msDelay(900);*/
-
-        /*rMotor.setSpeed(150);
-        lMotor.setSpeed(150);
-        lMotor.forward();
-        rMotor.backward();
-        Delay.msDelay(900);
-        while(sonarSample[0] < lastSample){sonarSampleProvider.fetchSample(sonarSample, 0);}
-
-        rMotor.stop();
-        lMotor.stop();*/
+        int r = (int) ((198+MultiThreadingSync.angle)*1.1);
+        int l = (int) ((198+ MultiThreadingSync.angle)*1.1);
+        lMotor.rotate( (l), true);
+        rMotor.rotate( -r);
 
 
         //-----------PD Parameters-----------------------
@@ -154,7 +124,8 @@ public class Control {
             while(MultiThreadingSync.getMode()==2){//TODO break condition
                 sonarSampleProvider.fetchSample(sonarSample,0);
 
-                Utility.display("Avoiding", sonarSample[0]);
+
+
                 e = sonarSample[0] * 2;//offset
 
                 if (e < 0.03 || e > 0.05) { // filtering out  noise, so that robot can go straight
@@ -184,7 +155,6 @@ public class Control {
         lightSampleProvider.fetchSample(lightSample, 0);
         while(lightSample[0] < 0.60){
             lightSampleProvider.fetchSample(lightSample, 0);
-            Utility.display("1" , lightSample[0]);
         }
         Delay.msDelay(50);//70
         /*rMotor.stop();
@@ -198,14 +168,12 @@ public class Control {
         lightSampleProvider.fetchSample(lightSample, 0);
         while(lightSample[0] > 0.20){
             lightSampleProvider.fetchSample(lightSample, 0);
-            Utility.display("2" , lightSample[0]);
         }
 
         //---------------------Once on the line--------------------------------------------------
 
         while(lightSample[0] < 0.40){
             lightSampleProvider.fetchSample(lightSample, 0);
-            Utility.display("3" , lightSample[0]);
         }
 
         MultiThreadingSync.setLineFollowerMode();

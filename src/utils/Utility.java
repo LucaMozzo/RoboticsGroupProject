@@ -103,4 +103,10 @@ public final class Utility {
     public static void display(String str, float f){
         display(str + String.valueOf(f));
     }
+
+    public static void breakMotors(){
+        lMotor.stop();
+        sMotor.stop();
+        rMotor.stop();
+    }
 }

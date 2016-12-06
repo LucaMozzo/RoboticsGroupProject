@@ -44,19 +44,21 @@ public class SensorThread extends Thread {
                 scanning:
                 while (sonarSample[0] > distance) {
                     Utility.sMotor.forward();
-                    while (Utility.sMotor.getTachoCount() < 45) {
+                    while (Utility.sMotor.getTachoCount() < 30) {
                         sonarSampleProvider.fetchSample(sonarSample, 0);
                         if (sonarSample[0] < distance) {
                             Utility.sMotor.stop();
+                            MultiThreadingSync.angle = Utility.sMotor.getTachoCount();
                             MultiThreadingSync.detectedDistance = sonarSample[0];
                             break scanning;
                         }
                     }
                     Utility.sMotor.backward();
-                    while (Utility.sMotor.getTachoCount() > -45) {
+                    while (Utility.sMotor.getTachoCount() > -30) {
                         sonarSampleProvider.fetchSample(sonarSample, 0);
                         if (sonarSample[0] < distance) {
                             Utility.sMotor.stop();
+                            MultiThreadingSync.angle = Utility.sMotor.getTachoCount();
                             MultiThreadingSync.detectedDistance = sonarSample[0];
                             break scanning;
                         }
@@ -67,13 +69,13 @@ public class SensorThread extends Thread {
 
                 MultiThreadingSync.setAvoidObstacleMode();
 
-                Delay.msDelay(3000);
+                Delay.msDelay(5000);
             }
             else if(MultiThreadingSync.getMode() == 2){
                 lightSampleProvider.fetchSample(lightSample, 0);
                 if(lightSample[0]<0.45){
                     obstacleDetected = true;
-                    MultiThreadingSync.setFindLineMode();
+                    MultiThreadingSync.setFoundLineMode();
                 }
             }
 

@@ -11,12 +11,14 @@ MultiThreadingSync {
      */
     public static int mode = 1;
     public static float detectedDistance = 0;
+    public static int angle = 0;
+
 
     public static synchronized void setLineFollowerMode(){mode = 1;}
 
     public static synchronized void setAvoidObstacleMode(){mode = 2;}
 
-    public static synchronized void setFindLineMode(){mode = 3;}
+    public static synchronized void setFoundLineMode(){mode = 3;}
 
     public static synchronized void exit(){mode = 4;}
 
