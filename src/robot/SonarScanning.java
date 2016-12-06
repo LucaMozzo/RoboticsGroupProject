@@ -3,6 +3,7 @@ package robot;
 import lejos.hardware.motor.EV3LargeRegulatedMotor;
 import lejos.hardware.motor.EV3MediumRegulatedMotor;
 import lejos.robotics.SampleProvider;
+import lejos.utility.Delay;
 import utils.Utility;
 
 /**
@@ -24,29 +25,45 @@ public class SonarScanning extends Thread {
     public void run(){
 
         boolean turn = false;
-
+        float distance = 0.15f;
+        float detectedDestance = distance;
         while(MultiThreadingSync.getMode()==1){
             sonarSampleProvider.fetchSample(sonarSample, 0);
-            while(sonarSample[0]>0.15){
-                if(sMotor.getTachoCount()>90){
-                    turn = false;
-                    sMotor.rotate(-5);
+            lMotor.setSpeed(100);
+            scanning:
+            while(sonarSample[0]>distance){
+                sMotor.forward();
+                while(sMotor.getTachoCount()<90){
+                    sonarSampleProvider.fetchSample(sonarSample, 0);
+                    if(sonarSample[0] <distance)break scanning;
                 }
-                else if(sMotor.getTachoCount()<-90){
-                    turn = true;
-                    sMotor.rotate(5);
+                sMotor.backward();
+                while(sMotor.getTachoCount()>-90){
+                    sonarSampleProvider.fetchSample(sonarSample, 0);
+                    if(sonarSample[0] <distance)break scanning;
                 }
-
-                else if(turn){
-                    sMotor.rotate(5);
-                }
-
-                else sMotor.rotate(-5);
                 sonarSampleProvider.fetchSample(sonarSample, 0);
             }
-            sMotor.rotateTo(-90);
-            rMotor.rotate((int) (-2.16*90-sMotor.getTachoCount()), true);
-            lMotor.rotate((int)(2.16*90-sMotor.getTachoCount()));
+            sMotor.setSpeed(100);
+            sMotor.backward();
+            while(sMotor.getTachoCount()>-90){
+                Delay.msDelay(10);
+            }
+            sMotor.stop();
+            lMotor.stop();
+            rMotor.stop();
+            rMotor.setSpeed(100);
+            lMotor.setSpeed(100);
+            lMotor.forward();
+            rMotor.backward();
+            sonarSampleProvider.fetchSample(sonarSample, 0);
+            while(sonarSample[0] > detectedDestance+0.05){
+                sonarSampleProvider.fetchSample(sonarSample, 0);
+            }
+            Delay.msDelay(100);
+            lMotor.stop();
+            rMotor.stop();
+            Delay.msDelay(1000);
             //Utility.rotate(90+sMotor.getTachoCount());
             //MultiThreadingSync.setAvoidObstacleMode();
         }
